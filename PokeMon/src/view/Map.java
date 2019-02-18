@@ -804,8 +804,7 @@ public class Map extends JPanel implements Runnable, KeyListener {
 					m_vill = new Music("battle.mp3", false);
 					m_vill.start();
 					
-					bm.randomP(user);
-					bm.enHP(bp, user);
+					bm.randomP(user,this.num);
 					cantmove = true;
 					System.out.println("배틀페이지");
 					mf.add(bp);
@@ -823,6 +822,11 @@ public class Map extends JPanel implements Runnable, KeyListener {
 			if(rect.intersects(h_wrange)){
 				int hrand = new Random().nextInt(100);
 				if(hrand == 30) {
+					m_vill.stop();
+					m_vill = new Music("battle.mp3", false);
+					m_vill.start();
+					
+					bm.randomP(user,this.num);
 					cantmove = true;
 					System.out.println("배틀페이지");
 					m.setVisible(false);
@@ -839,7 +843,11 @@ public class Map extends JPanel implements Runnable, KeyListener {
 			if(rect.intersects(h_wrange1)){
 				int hrand = new Random().nextInt(100);
 				if(hrand == 30) {
-
+					m_vill.stop();
+					m_vill = new Music("battle.mp3", false);
+					m_vill.start();
+					
+					bm.randomP(user,this.num);
 					cantmove = true;
 					System.out.println("배틀페이지");
 					m.setVisible(false);
@@ -853,6 +861,11 @@ public class Map extends JPanel implements Runnable, KeyListener {
 			if(rect.intersects(h_wrange2)){
 				int hrand = new Random().nextInt(100);
 				if(hrand == 30) {
+					m_vill.stop();
+					m_vill = new Music("battle.mp3", false);
+					m_vill.start();
+					
+					bm.randomP(user,this.num);
 					cantmove = true;
 					System.out.println("배틀페이지");
 					m.setVisible(false);
