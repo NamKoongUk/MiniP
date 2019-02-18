@@ -72,12 +72,6 @@ public class PChangeView extends JPanel{
       btnNo.setFont(new Font(getName(),3,15));
       this.add(btnNo);
       
-      /*//임시
-      for(int i=0 ; i<5 ; i++) {
-    	  
-    	  user.getTp_list().add(i, pd.getpList().get(i));
-      }*/
-      
       JLabel totalName = new JLabel("잡은 포켓몬 목록");
       totalName.setBounds(250, 238, 100, 30);
       this.add(totalName);

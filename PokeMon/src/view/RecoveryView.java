@@ -92,8 +92,6 @@ public class RecoveryView extends JPanel{
          }
       }
       
-      
-      
       yes.setBounds(700, 450, 200, 100);
       btnYes.addMouseListener(new MouseAdapter() {
          @Override

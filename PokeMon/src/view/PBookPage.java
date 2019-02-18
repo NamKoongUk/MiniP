@@ -133,7 +133,6 @@ public class PBookPage extends JPanel{
 				}
 			}
 		});
-		
 		backButton.setBounds(900, 610, 90, 120);
 		backButton.setBorderPainted(false);
 		backButton.setFocusPainted(false);

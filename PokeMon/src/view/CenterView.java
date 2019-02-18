@@ -63,7 +63,6 @@ public class CenterView extends JPanel{
 	      btnPChange.setFont(new Font(getName(),3,15));
 	      this.add(btnPChange);
 	      
-	      
 	      btnRecovery.addMouseListener(new MouseAdapter() {
 	         @Override
 	         public void mousePressed(MouseEvent e) {
