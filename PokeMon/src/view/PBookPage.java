@@ -101,7 +101,6 @@ public class PBookPage extends JPanel{
 					JOptionPane.showMessageDialog(null, "첫 번째 페이지입니다.", "포켓몬 도감", JOptionPane.WARNING_MESSAGE);
 					System.out.println("first Page");
 				}
-				
 			}
 		});
 		

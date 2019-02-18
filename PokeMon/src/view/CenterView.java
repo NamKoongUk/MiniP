@@ -87,8 +87,6 @@ public class CenterView extends JPanel{
 		            centerView.setVisible(false);
 		            mf.add(pv);
 		            pv.setVisible(true);
-	            
-	            
 	         }
 	      });
 	      backButton.setBounds(904, 660, 90, 59);

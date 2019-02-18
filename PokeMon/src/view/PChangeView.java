@@ -55,8 +55,6 @@ public class PChangeView extends JPanel{
       this.setBackground(Color.BLUE);
       
       
-      
-      
       JLabel recover = new JLabel("포켓몬 교체 센터 입니다.");
       recover.setFont(new Font(getName(),4,30));
       recover.setBounds(250, 130, 500, 200);
