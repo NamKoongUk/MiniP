@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import controller.MCManager;
@@ -48,18 +49,18 @@ public class RecoveryView extends JPanel{
       
       this.setBackground(Color.BLUE);
       
-      JLabel recover = new JLabel("포켓몬을 회복하시겠습니까?");
+      JLabel recover = new JLabel("포켓몬 회복 센터입니다.");
       recover.setFont(new Font(getName(),4,30));
       recover.setBounds(250, 130, 500, 200);
       this.add(recover);
       
-      JButton btnYes = new JButton("예");
-      btnYes.setBounds(400, 600, 100, 50);
+      JButton btnYes = new JButton("포켓몬 회복");
+      btnYes.setBounds(350, 600, 150, 50);
       btnYes.setFont(new Font(getName(),3,15));
       this.add(btnYes);
       
-      JButton btnNo = new JButton("아니오");
-      btnNo.setBounds(500, 600, 100, 50);
+      JButton btnNo = new JButton("센터로 가기");
+      btnNo.setBounds(500, 600, 150, 50);
       btnNo.setFont(new Font(getName(),3,15));
       this.add(btnNo);
       
@@ -77,12 +78,6 @@ public class RecoveryView extends JPanel{
          }
          else {
             
-            //i 로 해놓으면 널포인트 익셉션 뜸....
-            //일단 임의로 0으로 무한 반복 돌림
-            /*System.out.println(user.getUp_list().get(0));
-            searchPoke = user.getUp_list().get(0);
-            System.out.println(user.getUp_list().get(0).getpNo());
-            pokeImgNo = user.getUp_list().get(0).getpNo();*/
             searchPoke = user.getUp_list().get(i);
             pokeImgNo = user.getUp_list().get(i).getpNo();
             pImgList[i] = new ImageIcon("images/poke/"+pokeImgNo+"F.gif");
@@ -97,6 +92,8 @@ public class RecoveryView extends JPanel{
          }
       }
       
+      
+      
       yes.setBounds(700, 450, 200, 100);
       btnYes.addMouseListener(new MouseAdapter() {
          @Override
@@ -104,30 +101,14 @@ public class RecoveryView extends JPanel{
             ans=1;
             mc.useRecovery(ans);
             
-            yes.add(resultYes);         
-            yes.setVisible(true);
-            
+            JOptionPane.showMessageDialog(null, "회복이 성공적으로 진행되었습니다.", "회복성공", JOptionPane.WARNING_MESSAGE);
+        	mf.remove(recoveryView);
+        	centerView.setVisible(true);
+			mf.requestFocus();
             ans=0;
             
          }
       });
-      settingButton(resultYes);
-      resultYes.addMouseListener(new MouseAdapter() {
-         @Override
-         public void mouseClicked(MouseEvent e) {
-            //mf.remove(yes);
-            //yes.setVisible(false);
-            yes.dispose();
-              
-              mf.remove(recoveryView);
-              
-              centerView.setVisible(true);
-              centerView.requestFocus();
-              //m.setEscCtn(0);
-              ans=0;
-         }
-      });
-      this.add(resultYes);
       
       btnNo.addMouseListener(new MouseAdapter() {
          @Override
@@ -135,24 +116,13 @@ public class RecoveryView extends JPanel{
             ans=2;
             mc.useRecovery(ans);
             
-            
-            mf.remove(recoveryView);
-            
+            JOptionPane.showMessageDialog(null, "회복을 취소하셨습니다.", "회복취소", JOptionPane.WARNING_MESSAGE);
+        	mf.remove(recoveryView);
             centerView.setVisible(true);
             centerView.requestFocus();
-            //((Map)m).start();
-            //m.setEscCtn(0);
-            
             ans=0;
          }
       });
-      
-      
-      /*
-      m.setVisible(true);
-      mf.requestFocus();
-      m.setEscCtn(0);
-      mf.remove(centerView);*/
       
       backButton.setBounds(904, 660, 90, 59);
       settingButton(backButton);
@@ -171,7 +141,6 @@ public class RecoveryView extends JPanel{
             
             centerView.setVisible(true);
             centerView.requestFocus();
-            //((Map)m).start();
             m.setEscCtn(0);
          }
       });
