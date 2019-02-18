@@ -36,25 +36,18 @@ public class PChangeView extends JPanel{
    
    private User user;
    
-   private PokemonDao pd=new PokemonDao();//ÀÓ½Ã
+   private PokemonDao pd=new PokemonDao();//ì„ì‹œ
    
    private CenterView centerView;
    
    private Pokemon totalPoke;
    private Pokemon myPoke;
    
-   /*private JButton error = new JButton("±³Ã¼ÇÒ Æ÷ÄÏ¸óÀÌ ¾ø½À´Ï´Ù.");
-   private Dialog errorDialog = new Dialog(mf);
-   
-   private JButton changeP = new JButton("±³Ã¼°¡ ¼º°øÀûÀ¸·Î µÇ¾ú½À´Ï´Ù.");
-   private Dialog changePDialog = new Dialog(mf);*/ 
-   
    public PChangeView(MainFrame mf, JPanel oldPage, User user) {
      mc = new MCManager(user);
      this.mf=mf;
       this.pChangeView=this;
       this.centerView = (CenterView)oldPage;
-      //this.mNum=mNum;
       
       this.setLayout(null);
       this.setBounds(0,0,1024,768);
@@ -62,32 +55,23 @@ public class PChangeView extends JPanel{
       this.setBackground(Color.BLUE);
       
       
-      
-      //System.out.println("¼¾ÅÍ");
-      
-      JLabel recover = new JLabel("±³Ã¼ÇÒ Æ÷ÄÏ¸óÀ» ¼±ÅÃÇØÁÖ¼¼¿ä.");
+      JLabel recover = new JLabel("í¬ì¼“ëª¬ êµì²´ ì„¼í„° ì…ë‹ˆë‹¤.");
       recover.setFont(new Font(getName(),4,30));
       recover.setBounds(250, 130, 500, 200);
       this.add(recover);
       
-      JButton btnYes = new JButton("¿¹");
-      btnYes.setBounds(400, 600, 100, 50);
+      JButton btnYes = new JButton("í¬ì¼“ëª¬ êµì²´");
+      btnYes.setBounds(350, 600, 150, 50);
       btnYes.setFont(new Font(getName(),3,15));
       this.add(btnYes);
       
-      JButton btnNo = new JButton("¾Æ´Ï¿À");
-      btnNo.setBounds(500, 600, 100, 50);
+      JButton btnNo = new JButton("ì„¼í„°ë¡œ ê°€ê¸°");
+      btnNo.setBounds(500, 600, 150, 50);
       btnNo.setFont(new Font(getName(),3,15));
       this.add(btnNo);
       
-      
-      //ÀÓ½Ã
-      /*for(int i=0 ; i<5 ; i++) {
-    	  
-    	  user.getTp_list().add(i, pd.getpList().get(i));
-      }*/
-      
-      JLabel totalName = new JLabel("ÀâÀº Æ÷ÄÏ¸ó ¸ñ·Ï");
+
+      JLabel totalName = new JLabel("ì¡ì€ í¬ì¼“ëª¬ ëª©ë¡");
       totalName.setBounds(250, 238, 100, 30);
       this.add(totalName);
             
@@ -98,7 +82,7 @@ public class PChangeView extends JPanel{
       JLabel[] totalPokeImg = new JLabel[ptImgList.length];
       for(int i=0 ; i<user.getTp_list().size() ; i++) {
     	  if(user.getTp_list().size()==0) {
-    		  System.out.println("±³Ã¼ÇÒ Æ÷ÄÏ¸óÀÌ ¾øÀ½");
+    		  System.out.println("êµì²´í•  í¬ì¼“ëª¬ì´ ì—†ìŒ");
     	  }
     	  else {           
     		  totalSearchPoke = user.getTp_list().get(i);
@@ -122,7 +106,7 @@ public class PChangeView extends JPanel{
       totalSelectedPoke.setSize(100, 50);
       
       
-      JLabel myPokeName = new JLabel("ÇöÀç Æ÷ÄÏ¸ó ¸ñ·Ï");
+      JLabel myPokeName = new JLabel("í˜„ì¬ í¬ì¼“ëª¬ ëª©ë¡");
       myPokeName.setBounds(360, 238, 100, 30);
       this.add(myPokeName);
             
@@ -133,7 +117,7 @@ public class PChangeView extends JPanel{
       JLabel[] myPokeImg = new JLabel[pmImgList.length];
       for(int i=0 ; i<user.getUp_list().size() ; i++) {
     	  if(user.getUp_list().size()==0) {
-    		  System.out.println("³» Æ÷ÄÏ¸óÀÌ ¾øÀ½");
+    		  System.out.println("ë‚´ í¬ì¼“ëª¬ì´ ì—†ìŒ");
     	  }
     	  else {           
     		  mySearchPoke = user.getUp_list().get(i);
@@ -164,7 +148,7 @@ public class PChangeView extends JPanel{
           public void valueChanged(ListSelectionEvent e) {
         	  totalSelectedPoke.setText(totalPokeList.getSelectedValue()+"");
         	  totalSelectedPoke.setHorizontalAlignment(JTextField.CENTER);
-        	  System.out.println("¹Ù²Ü : "+totalPokeList.getSelectedValue());
+        	  System.out.println("ë°”ê¿€ : "+totalPokeList.getSelectedValue());
         	  for(int i=0 ; i<user.getTp_list().size() ; i++) {
         		  if(totalPokeList.getSelectedValue().equals(user.getTp_list().get(i).getpName())) {
         			  totalPoke=user.getTp_list().get(i);
@@ -189,7 +173,7 @@ public class PChangeView extends JPanel{
           public void valueChanged(ListSelectionEvent e) {
         	  mySelectedPoke.setText(myPokeList.getSelectedValue()+"");
         	  mySelectedPoke.setHorizontalAlignment(JTextField.CENTER);
-        	  System.out.println("³»²¨ : "+myPokeList.getSelectedValue());
+        	  System.out.println("ë‚´êº¼ : "+myPokeList.getSelectedValue());
         	  for(int i=0 ; i<user.getUp_list().size() ; i++) {
         		  if(myPokeList.getSelectedValue().equals(user.getUp_list().get(i).getpName())) {
         			  myPoke=user.getUp_list().get(i);
@@ -213,10 +197,7 @@ public class PChangeView extends JPanel{
          public void mousePressed(MouseEvent e) {
             if(myPoke!=null&&totalPoke!=null) {
             	mc.usepChange(myPoke, totalPoke);
-            	/*changePDialog.setBounds(660, 450, 230, 100);
-            	changePDialog.add(changeP);         
-            	changePDialog.setVisible(true);*/
-            	JOptionPane.showMessageDialog(null, "±³Ã¼°¡ ¼º°øÀûÀ¸·Î ÁøÇàµÇ¾ú½À´Ï´Ù.", "±³Ã¼¼º°ø", JOptionPane.WARNING_MESSAGE);
+            	JOptionPane.showMessageDialog(null, "êµì²´ê°€ ì„±ê³µì ìœ¼ë¡œ ì§„í–‰ë˜ì—ˆìŠµë‹ˆë‹¤.", "êµì²´ì„±ê³µ", JOptionPane.WARNING_MESSAGE);
             	mf.remove(pChangeView);
     			centerView.setVisible(true);
     			mf.requestFocus();
@@ -224,73 +205,28 @@ public class PChangeView extends JPanel{
             else {
             	try {
             		
-            		JOptionPane.showMessageDialog(null, "±³Ã¼ÇÒ Æ÷ÄÏ¸óÀÌ ¾ø½À´Ï´Ù.", "±³Ã¼½ÇÆĞ", JOptionPane.WARNING_MESSAGE);
+            		JOptionPane.showMessageDialog(null, "êµì²´í•  í¬ì¼“ëª¬ì´ ì—†ìŠµë‹ˆë‹¤.", "êµì²´ì‹¤íŒ¨", JOptionPane.WARNING_MESSAGE);
                 	mf.remove(pChangeView);
         			centerView.setVisible(true);
         			mf.requestFocus();
             	}catch(NullPointerException x) {
-            		System.out.println("Áñ");
+            		System.out.println("ì¦");
             	}
             }
             
             
          }
       });
-      /*settingButton(error);
-      error.addMouseListener(new MouseAdapter() {
-         @Override
-         public void mouseClicked(MouseEvent e) {
-            //mf.remove(yes);
-            //yes.setVisible(false);
-        	 errorDialog.dispose();
-              
-              mf.remove(pChangeView);
-              
-              centerView.setVisible(true);
-              centerView.requestFocus();
-              //m.setEscCtn(0);
-         }
-      });
-      this.add(changeP);
-      
-      settingButton(changeP);
-      changeP.addMouseListener(new MouseAdapter() {
-         @Override
-         public void mouseClicked(MouseEvent e) {
-            //mf.remove(yes);
-            //yes.setVisible(false);
-        	 changePDialog.dispose();
-              
-              mf.remove(pChangeView);
-              
-              centerView.setVisible(true);
-              centerView.requestFocus();
-              //m.setEscCtn(0);
-         }
-      });
-      this.add(changeP);*/
       
       btnNo.addMouseListener(new MouseAdapter() {
          @Override
          public void mousePressed(MouseEvent e) {
-            
-            
-            mf.remove(pChangeView);
-            
-            centerView.setVisible(true);
-            centerView.requestFocus();
-            //((Map)m).start();
-            //m.setEscCtn(0);
-            
+        	 JOptionPane.showMessageDialog(null, "êµì²´ë¥¼ ì·¨ì†Œí•˜ì…¨ìŠµë‹ˆë‹¤.", "êµì²´ì·¨ì†Œ", JOptionPane.WARNING_MESSAGE);
+         	 mf.remove(pChangeView);
+             centerView.setVisible(true);
+             centerView.requestFocus();
          }
       });
-      
-      
-      /*
-      m.setVisible(true);
-      mf.requestFocus();
-      m.setEscCtn(0);
-      mf.remove(centerView);*/
       
       backButton.setBounds(904, 660, 90, 59);
       settingButton(backButton);
@@ -309,16 +245,11 @@ public class PChangeView extends JPanel{
             
             centerView.setVisible(true);
             centerView.requestFocus();
-            //((Map)m).start();
-            //m.setEscCtn(0);
          }
       });
       this.add(backButton);
    }
-   
-
-
-public void paintComponent(Graphics g) {
+   public void paintComponent(Graphics g) {
       
          g.drawImage(pChangeBackground, 0, 0, 1024, 729, this);
    }

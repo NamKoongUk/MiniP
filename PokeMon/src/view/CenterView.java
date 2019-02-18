@@ -48,10 +48,6 @@ public class CenterView extends JPanel{
 	      
 	      this.setBackground(Color.BLUE);
 	      
-	      
-	      
-	      //System.out.println("센터");
-	      
 	      JLabel recover = new JLabel("센터에 오신 걸 환영합니다");
 	      recover.setFont(new Font(getName(),4,30));
 	      recover.setBounds(330, 200, 600, 200);
@@ -67,12 +63,10 @@ public class CenterView extends JPanel{
 	      btnPChange.setFont(new Font(getName(),3,15));
 	      this.add(btnPChange);
 	      
-	      
 	      btnRecovery.addMouseListener(new MouseAdapter() {
 	         @Override
 	         public void mousePressed(MouseEvent e) {
 	        	 System.out.println("포켓몬 회복 페이지로 이동");
-	            //mc.useRecovery(ans);
 	            
 	            rv = new RecoveryView(mf, centerView, user);
 	            
@@ -87,15 +81,12 @@ public class CenterView extends JPanel{
 	         @Override
 	         public void mousePressed(MouseEvent e) {
 	        	 System.out.println("포켓몬 교체 페이지로 이동");
-	        	 //mc.usepChange(ans);
 		            
 		            pv = new PChangeView(mf, centerView, user);
 		            
 		            centerView.setVisible(false);
 		            mf.add(pv);
 		            pv.setVisible(true);
-	            
-	            
 	         }
 	      });
 	      backButton.setBounds(904, 660, 90, 59);

@@ -11,9 +11,11 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.text.JTextComponent;
+
+import model.dao.PokemonDao;
 
 
 
@@ -39,10 +41,12 @@ public class PBookPage extends JPanel{
 	//기본 시작페이지
 	private int page = 1;
 	//마지막 포켓몬 번호
-	private int pokemonMax = 29;
-	
+	private int pokemonMax ;
+	private PokemonDao pd = new PokemonDao();
 	
 	public PBookPage(MainFrame mf,UserMenuPage ump) {
+		
+		pokemonMax = pd.getpList().size();
 		pBookImage();
 		this.mf = mf;
 		this.pb = this;
@@ -94,9 +98,9 @@ public class PBookPage extends JPanel{
 					page --;
 					clickPBookleftButton(page);
 				} else {
+					JOptionPane.showMessageDialog(null, "첫 번째 페이지입니다.", "포켓몬 도감", JOptionPane.WARNING_MESSAGE);
 					System.out.println("first Page");
 				}
-				
 			}
 		});
 		
@@ -123,11 +127,11 @@ public class PBookPage extends JPanel{
 					clickPBookRightButton(page);
 					page ++;
 				} else {
+					JOptionPane.showMessageDialog(null, "마지막 페이지입니다.", "포켓몬 도감", JOptionPane.WARNING_MESSAGE);
 					System.out.println("Last Page");
 				}
 			}
 		});
-		
 		backButton.setBounds(900, 610, 90, 120);
 		backButton.setBorderPainted(false);
 		backButton.setFocusPainted(false);
