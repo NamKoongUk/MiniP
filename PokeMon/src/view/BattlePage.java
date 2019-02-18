@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Dialog;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -15,6 +16,7 @@ import javax.swing.JPanel;
 import controller.BattleManager;
 import model.dao.PokemonDao;
 import model.vo.User;
+import music.Music;
 
 
 public class BattlePage extends JPanel {
@@ -79,7 +81,18 @@ public void setM(Map m) {
    Image background = Toolkit.getDefaultToolkit().getImage("images/battleViewImg/battleview.png");
    Image mground = Toolkit.getDefaultToolkit().getImage("images/battleViewImg/풀필드1.png");
    Image eground = Toolkit.getDefaultToolkit().getImage("images/battleViewImg/풀필드2.png");
-  
+   public JLabel getEnHP() {
+	      return enHP;
+	   }
+	   public void setEnHP(JLabel enHP) {
+	      this.enHP = enHP;
+	   }
+	   public JLabel getMyHP() {
+	      return myHP;
+	   }
+	   public void setMyHP(JLabel myHP) {
+	      this.myHP = myHP;
+	   }
 
    public BattlePage(MainFrame mf, JPanel panel, User user) {
 	
@@ -95,7 +108,19 @@ public void setM(Map m) {
       bp.setLayout(null);
       //this.pip = new PInfoPage(mf, this);
 
+      myHP.setFont(new Font("바탕체", Font.BOLD, 30));
+      myHP.setBounds(230, 250, 200, 100);
 
+      this.add(myHP);
+      this.setComponentZOrder(myHP, 0);
+      
+
+      enHP.setFont(new Font("바탕체", Font.BOLD, 30));
+      enHP.setBounds(760, 150, 100, 100);
+
+      this.add(enHP);
+      this.setComponentZOrder(enHP, 0);
+      
       fightButton.setBounds(180, 500, 300, 80);
       this.add(fightButton);
       settingButton(fightButton);
@@ -198,6 +223,9 @@ public void setM(Map m) {
                m.setVisible(true);
                mf.requestFocus();
                m.setCantMove(false);
+               m.getM_vill().stop();
+               m.setM_vill(new Music("village.mp3",false));
+               m.getM_vill().start();
                //((Map) m).start();
             }
          });
