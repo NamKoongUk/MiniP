@@ -27,7 +27,7 @@ public class RecoveryView extends JPanel{
    private JButton backButton = new JButton(new ImageIcon(backButtonImage));
    private MCManager mc;
    private int ans=0;
-   private Image recoveryBackground = new ImageIcon("images/maketViewImages/centerView.gif").getImage();
+   private Image recoveryBackground = new ImageIcon("images/maketViewImages/recoveryView.gif").getImage();
    
    private User user;
    
@@ -74,9 +74,8 @@ public class RecoveryView extends JPanel{
       int pokeImgNo = 0;
       ImageIcon[] pImgList = new ImageIcon[4];
       JLabel[] userPoke = new JLabel[pImgList.length];
-      int x=215;
-      int y=300;
-      int num=1;
+      int x=140;
+      int y=270;
       for(int i=0 ; i<4 ; i++) {
          if(user.getUp_list().size()==0) {
             System.out.println("포켓몬이 없음");
@@ -87,11 +86,19 @@ public class RecoveryView extends JPanel{
             pokeImgNo = user.getUp_list().get(i).getpNo();
             pImgList[i] = new ImageIcon("images/poke/"+pokeImgNo+"F.gif");
             userPoke[i] = new JLabel(pImgList[i]);
-             userPoke[i].setBounds(x, y, 175, 300);
-             x+=148;
-             num++;
-             System.out.println("x : "+x);
-             System.out.println("num : "+num);
+            if(pokeImgNo==6) {
+            	x+=20;
+            	y=250;
+            }else if(pokeImgNo==3||pokeImgNo==9||pokeImgNo==22) {
+            	x+=10;
+            	y=270;
+            }
+            else {
+            	x-=10;
+            	y=270;
+            }
+             userPoke[i].setBounds(x, y, 190, 300);
+             x+=190;
              this.add(userPoke[i]);
             
          }
