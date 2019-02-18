@@ -20,6 +20,7 @@ import model.dao.PokemonDao;
 
 
 public class PBookPage extends JPanel{
+
    
    private JPanel pb;
    private MainFrame mf;
@@ -29,18 +30,18 @@ public class PBookPage extends JPanel{
    private ImageIcon leftButtonImage = new ImageIcon(("images/userMenuImages/leftButtonBasic.PNG"));
    private ImageIcon rightButtonImage = new ImageIcon(("images/userMenuImages/rightButtonBasic.PNG"));
    private ImageIcon getPokeImage = new ImageIcon(("images/userMenuImages/getPoke.PNG"));
-   //ÀÌ¹ÌÁö¸¦ °¡Áú ¸®½ºÆ®
+   //ì´ë¯¸ì§€ë¥¼ ê°€ì§ˆ ë¦¬ìŠ¤íŠ¸
    ArrayList<ImageIcon> imageList = new ArrayList<>();
-   //È­¸é¿¡ º¸¿©Áú Æ÷ÄÏ¸ó ÀÌ¹ÌÁö ¶óº§
+   //í™”ë©´ì— ë³´ì—¬ì§ˆ í¬ì¼“ëª¬ ì´ë¯¸ì§€ ë¼ë²¨
    private JLabel[] pInfo = new JLabel[6];
    private JButton leftButton = new JButton(leftButtonImage);
    private JButton rightButton = new JButton(rightButtonImage);
    private JLabel getPokeLabel = new JLabel(getPokeImage);
    private JButton backButton = new JButton(backButtonImage);
    private ImageIcon image;
-   //±âº» ½ÃÀÛÆäÀÌÁö
+   //ê¸°ë³¸ ì‹œì‘í˜ì´ì§€
    private int page = 1;
-   //¸¶Áö¸· Æ÷ÄÏ¸ó ¹øÈ£
+   //ë§ˆì§€ë§‰ í¬ì¼“ëª¬ ë²ˆí˜¸
    private int pokemonMax ;
    private PokemonDao pd = new PokemonDao();
    
@@ -70,16 +71,18 @@ public class PBookPage extends JPanel{
       label.setBounds(450, 20, 200, 40);
       this.setBackground(Color.WHITE);
 
+
       for(int i=0; i<=5; i++) {
          pInfo[i] = new JLabel(imageList.get(i));
       }
+
 
       
       leftButton.setBounds(20, 320, 95, 95);
       leftButton.setBorderPainted(false);
       leftButton.setFocusPainted(false);
       leftButton.setContentAreaFilled(false);
-      //¿ŞÂÊÀ¸·Î °¡±â ¹öÆ°
+      //ì™¼ìª½ìœ¼ë¡œ ê°€ê¸° ë²„íŠ¼
       leftButton.addMouseListener(new MouseAdapter() {
          @Override
          public void mouseEntered(MouseEvent e) {
@@ -93,12 +96,12 @@ public class PBookPage extends JPanel{
          }
          @Override
          public void mousePressed(MouseEvent e) {
-            //¿ŞÂÊ ¹öÆ°
+            //ì™¼ìª½ ë²„íŠ¼
             if(page>1) {
                page --;
                clickPBookleftButton(page);
             } else {
-               JOptionPane.showMessageDialog(null, "Ã¹ ¹øÂ° ÆäÀÌÁöÀÔ´Ï´Ù.", "Æ÷ÄÏ¸ó µµ°¨", JOptionPane.WARNING_MESSAGE);
+               JOptionPane.showMessageDialog(null, "ì²« ë²ˆì§¸ í˜ì´ì§€ì…ë‹ˆë‹¤.", "í¬ì¼“ëª¬ ë„ê°", JOptionPane.WARNING_MESSAGE);
                System.out.println("first Page");
             }
          }
@@ -108,7 +111,7 @@ public class PBookPage extends JPanel{
       rightButton.setBorderPainted(false);
       rightButton.setFocusPainted(false);
       rightButton.setContentAreaFilled(false);
-      //¿À¸¥ÂÊÀ¸·Î °¡±â ¹öÆ°
+      //ì˜¤ë¥¸ìª½ìœ¼ë¡œ ê°€ê¸° ë²„íŠ¼
       rightButton.addMouseListener(new MouseAdapter() {
          @Override
          public void mouseEntered(MouseEvent e) {
@@ -127,7 +130,7 @@ public class PBookPage extends JPanel{
                clickPBookRightButton(page);
                page ++;
             } else {
-               JOptionPane.showMessageDialog(null, "¸¶Áö¸· ÆäÀÌÁöÀÔ´Ï´Ù.", "Æ÷ÄÏ¸ó µµ°¨", JOptionPane.WARNING_MESSAGE);
+               JOptionPane.showMessageDialog(null, "ë§ˆì§€ë§‰ í˜ì´ì§€ì…ë‹ˆë‹¤.", "í¬ì¼“ëª¬ ë„ê°", JOptionPane.WARNING_MESSAGE);
                System.out.println("Last Page");
             }
          }
@@ -136,7 +139,7 @@ public class PBookPage extends JPanel{
       backButton.setBorderPainted(false);
       backButton.setFocusPainted(false);
       backButton.setContentAreaFilled(false);
-      //µÚ·Î°¡±â ¹öÆ°
+      //ë’¤ë¡œê°€ê¸° ë²„íŠ¼
       backButton.addMouseListener(new MouseAdapter() {
          @Override
          public void mouseEntered(MouseEvent e) {
@@ -160,6 +163,7 @@ public class PBookPage extends JPanel{
       
       setBoundPInfo();
 
+
       for(int i=0; i<=pInfo.length-1; i++) {
          this.add(pInfo[i]);
       }
@@ -172,7 +176,7 @@ public class PBookPage extends JPanel{
       this.add(backButton);
       
    }
-   //ÀÌ¹ÌÁö listÀúÀå ¸Ş¼Òµå
+   //ì´ë¯¸ì§€ listì €ì¥ ë©”ì†Œë“œ
    public void pBookImage() {
       for(int i=0; i<pokemonMax; i++) {
          if(i<9) {
