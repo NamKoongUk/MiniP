@@ -164,6 +164,7 @@ public class PBookPage extends JPanel{
       setBoundPInfo();
 
 
+
       for(int i=0; i<=pInfo.length-1; i++) {
          this.add(pInfo[i]);
       }
@@ -176,7 +177,9 @@ public class PBookPage extends JPanel{
       this.add(backButton);
       
    }
+
    //이미지 list저장 메소드
+
    public void pBookImage() {
       for(int i=0; i<pokemonMax; i++) {
          if(i<9) {

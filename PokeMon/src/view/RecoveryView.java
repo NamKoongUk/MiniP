@@ -49,17 +49,22 @@ public class RecoveryView extends JPanel{
       
       this.setBackground(Color.BLUE);
       
+
       JLabel recover = new JLabel("포켓몬 회복 센터입니다.");
+
       recover.setFont(new Font(getName(),4,30));
       recover.setBounds(250, 130, 500, 200);
       this.add(recover);
-      
+
       JButton btnYes = new JButton("포켓몬 회복");
+
       btnYes.setBounds(350, 600, 150, 50);
       btnYes.setFont(new Font(getName(),3,15));
       this.add(btnYes);
       
+
       JButton btnNo = new JButton("센터로 가기");
+
       btnNo.setBounds(500, 600, 150, 50);
       btnNo.setFont(new Font(getName(),3,15));
       this.add(btnNo);
@@ -98,11 +103,13 @@ public class RecoveryView extends JPanel{
             ans=1;
             mc.useRecovery(ans);
             
+
             JOptionPane.showMessageDialog(null, "회복이 성공적으로 진행되었습니다.", "회복성공", JOptionPane.WARNING_MESSAGE);
 
            mf.remove(recoveryView);
            centerView.setVisible(true);
          mf.requestFocus();
+
 
             ans=0;
             
@@ -115,9 +122,11 @@ public class RecoveryView extends JPanel{
             ans=2;
             mc.useRecovery(ans);
             
+
             JOptionPane.showMessageDialog(null, "회복을 취소하셨습니다.", "회복취소", JOptionPane.WARNING_MESSAGE);
 
            mf.remove(recoveryView);
+
 
             centerView.setVisible(true);
             centerView.requestFocus();
