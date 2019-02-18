@@ -108,7 +108,7 @@ public class LabPage extends JPanel {
 				}
 				
 				if(result == 0) {
-					user.getUp_list().set(0, poke[0]);
+					user.getUp_list().add(0, poke[0]);
 					select = true;
 					System.out.println(select);
 				}

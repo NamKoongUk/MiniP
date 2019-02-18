@@ -84,13 +84,13 @@ public class MarketView extends JPanel {
        } 
       
       JList itemPrice = new JList(iPriceList);
-      itemPrice.setFont(new Font(getName(),Font.BOLD,17));
+      itemPrice.setFont(new Font(getName(),Font.BOLD,15));
       itemPrice.setBounds(677, 210, 47, 250);
       itemPrice.setEnabled(false);
       itemPrice.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
       
       JList itemName = new JList(iNameList);
-      itemName.setFont(new Font(getName(),Font.BOLD,17));
+      itemName.setFont(new Font(getName(),Font.BOLD,15));
       itemName.setBounds(424, 210, 255, 250);
       itemName.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
       
