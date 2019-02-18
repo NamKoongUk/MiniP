@@ -33,7 +33,7 @@ public class RecoveryView extends JPanel{
    
    private PInfoPage pinfo;
    
-   private JButton resultYes = new JButton("ëª¨ë‘ íšŒë³µ ë˜ì—ˆìŠµë‹ˆë‹¤.");
+   private JButton resultYes = new JButton("¸ğµÎ È¸º¹µÇ¾ú½À´Ï´Ù.");
    private Dialog yes = new Dialog(mf); 
    
    private CenterView centerView;
@@ -50,20 +50,20 @@ public class RecoveryView extends JPanel{
       this.setBackground(Color.BLUE);
       
 
-      JLabel recover = new JLabel("í¬ì¼“ëª¬ íšŒë³µ ì„¼í„°ì…ë‹ˆë‹¤.");
+      JLabel recover = new JLabel("Æ÷ÄÏ¸ó È¸º¹ ¼¾ÅÍÀÔ´Ï´Ù.");
 
       recover.setFont(new Font(getName(),4,30));
       recover.setBounds(250, 130, 500, 200);
       this.add(recover);
 
-      JButton btnYes = new JButton("í¬ì¼“ëª¬ íšŒë³µ");
+      JButton btnYes = new JButton("Æ÷ÄÏ¸ó È¸º¹");
 
       btnYes.setBounds(350, 600, 150, 50);
       btnYes.setFont(new Font(getName(),3,15));
       this.add(btnYes);
       
 
-      JButton btnNo = new JButton("ì„¼í„°ë¡œ ê°€ê¸°");
+      JButton btnNo = new JButton("¼¾ÅÍ·Î °¡±â");
 
       btnNo.setBounds(500, 600, 150, 50);
       btnNo.setFont(new Font(getName(),3,15));
@@ -79,7 +79,7 @@ public class RecoveryView extends JPanel{
       int num=1;
       for(int i=0 ; i<4 ; i++) {
          if(user.getUp_list().size()==0) {
-            System.out.println("í¬ì¼“ëª¬ì´ ì—†ìŒ");
+            System.out.println("Æ÷ÄÏ¸óÀÌ ¾øÀ½");
          }
          else {
             
@@ -104,7 +104,7 @@ public class RecoveryView extends JPanel{
             mc.useRecovery(ans);
             
 
-            JOptionPane.showMessageDialog(null, "íšŒë³µì´ ì„±ê³µì ìœ¼ë¡œ ì§„í–‰ë˜ì—ˆìŠµë‹ˆë‹¤.", "íšŒë³µì„±ê³µ", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "È¸º¹ÀÌ ¼º°øÀûÀ¸·Î ÁøÇà µÇ¾ú½À´Ï´Ù.", "È¸º¹ ¼º°ø", JOptionPane.WARNING_MESSAGE);
 
            mf.remove(recoveryView);
            centerView.setVisible(true);
@@ -123,7 +123,7 @@ public class RecoveryView extends JPanel{
             mc.useRecovery(ans);
             
 
-            JOptionPane.showMessageDialog(null, "íšŒë³µì„ ì·¨ì†Œí•˜ì…¨ìŠµë‹ˆë‹¤.", "íšŒë³µì·¨ì†Œ", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "È¸º¹À» Ãë¼ÒÇÏ¼Ì½À´Ï´Ù.", "È¸º¹ Ãë¼Ò", JOptionPane.WARNING_MESSAGE);
 
            mf.remove(recoveryView);
 
