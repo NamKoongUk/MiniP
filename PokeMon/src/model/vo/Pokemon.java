@@ -19,6 +19,7 @@ public class Pokemon implements Serializable{
 
    private int exp;      //현재 경험치
    private int pMaxExp;   //최대 경험치, 맥스에 도달하면 레벨업
+   private int setExp;      //잡으면 얻게 되는 경험치
    public int getpMaxHp() {
 	return pMaxHp;
 }
@@ -30,7 +31,7 @@ public void setpMaxHp(int pMaxHp) {
 }
 
 
-private int setExp;      //잡으면 얻게 되는 경험치
+
 
    private ArrayList<Skill> pSkill;      //포켓몬 스킬
 

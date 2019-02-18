@@ -765,7 +765,7 @@ public class Map extends JPanel implements Runnable, KeyListener {
 					m_vill.start();
 					
 					bm.randomP(user);
-					//bm.enHP(bp, user);
+					bm.enHP(bp, user);
 					cantmove = true;
 					System.out.println("배틀페이지");
 					mf.add(bp);
@@ -853,6 +853,14 @@ public class Map extends JPanel implements Runnable, KeyListener {
 
 
 
+	}
+
+	public Music getM_vill() {
+		return m_vill;
+	}
+
+	public void setM_vill(Music m_vill) {
+		this.m_vill = m_vill;
 	}
 
 	public void canMove() {
