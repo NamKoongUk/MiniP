@@ -42,8 +42,8 @@ public class StartPage extends JPanel{
 		label.setForeground(new Color(255,255,255,255));
 		label.setFont(new Font("돋움체", Font.BOLD, 30));
 		label.setBounds(260, 180, 550, 200);
-		Music m_main = new Music("start.mp3", false);
-		m_main.start();
+		/*Music m_main = new Music("start.mp3", false);
+		m_main.start();*/
 		
 		
 		Timer timer = new Timer(15, new ActionListener() {
@@ -100,7 +100,7 @@ public class StartPage extends JPanel{
 				fade.fadeout(mf);
 				mf.requestFocus();
 				timer.stop();
-				m_main.close();
+				//m_main.close();
 			/*	UserDao ud = new UserDao("이름이름");
 				ud.saveUser();*/
 			//	mf.add(new Map(mf, ud.getUserList().get(0)));

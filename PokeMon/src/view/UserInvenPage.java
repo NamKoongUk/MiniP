@@ -39,6 +39,15 @@ public class UserInvenPage extends JPanel {
 	private JPanel oldPage;
 	private Map m;
 	private BattleManager bm = new BattleManager();
+	private int ran = 0;
+
+	public int getRan() {
+		return ran;
+	}
+
+	public void setRan(int ran) {
+		this.ran = ran;
+	}
 
 	private JButton backButton = new JButton(new ImageIcon(("images/userMenuImages/backButtonBasic.PNG")));
 	private JButton useButton = new JButton(new ImageIcon(("images/userMenuImages/useButton.PNG")));
@@ -51,11 +60,12 @@ public class UserInvenPage extends JPanel {
 
 	private ItemDao id = new ItemDao();
 
-	public UserInvenPage(MainFrame mf,JPanel oldPage,User user,Map m) {
+	public UserInvenPage(MainFrame mf,JPanel oldPage,User user,Map m, BattleManager bm) {
 		this.mf = mf;
 		this.ump = ump;
 		this.uivp = this;
 		this.user = user;
+		this.bm = bm;
 		this.oldPage = oldPage; // JPanel로 받아 userMenuPage, BattlePage를 받을수 있음
 		ArrayList<Item> itemList= (ArrayList<Item>) user.getUi_list();
 		ArrayList<Item> imgList= (ArrayList<Item>) user.getUi_list();
@@ -186,12 +196,13 @@ public class UserInvenPage extends JPanel {
 			public void mousePressed(java.awt.event.MouseEvent e) {
 				//선택한 아이템이 있을때 다음페이지로 넘어감
 				String userItemName = null;
-				userItemName = itemName.getSelectedValue()+""; //선택한 아이템 리셋
-				System.out.println(userItemName==null);
-				if(userItemName!=null) {
-					uivp.setVisible(false);
-					mf.remove(uivp);
-				}
+	            userItemName = itemName.getSelectedValue()+""; //선택한 아이템 리셋
+	            if(!(userItemName.equals("null"))) {
+	               uivp.setVisible(false);
+	               mf.remove(uivp);
+	            } else {
+	               JOptionPane.showMessageDialog(null, "아이템을 선택해주세요", "에러", JOptionPane.WARNING_MESSAGE);
+	            }
 				ItemDao iList = new ItemDao();
 				Item checkItem = null;
 				checkItem = new ItemManager(user).itemReturn(userItemName);
@@ -202,9 +213,11 @@ public class UserInvenPage extends JPanel {
 				if(oldPage instanceof BattlePage) {
 					if(checkItem instanceof Ball) {
 						if(!(bm.catchP(user, oldPage, m, checkItem))) {
+							bm.setCtn(bm.getCtn() + 1);
 							System.out.println("못잡았을때");
 							oldPage.setVisible(true);
 						} else {
+							bm.setCtn(bm.getCtn() + 1);
 							System.out.println("잡았을때");
 							oldPage.setVisible(false);
 							mf.remove(oldPage);

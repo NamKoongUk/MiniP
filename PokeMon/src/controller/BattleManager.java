@@ -20,6 +20,7 @@ import view.BattleSkillPage;
 import view.MainFrame;
 import view.Map;
 import view.PInfoPage;
+import view.UserInvenPage;
 import view.UserMenuPage;
 
 public class BattleManager {
@@ -39,9 +40,18 @@ public class BattleManager {
 	private MainFrame mf;
 	private Map m;
 	private JPanel oldPage;
+	private int ctn =0;
+	private UserInvenPage uivp;
 
 
-
+	public int getCtn() {
+		return ctn;
+	}
+	public void setCtn(int ctn) {
+		this.ctn = ctn;
+	}
+	
+	
 	//현재 포켓몬 보여주는 부분
 	public void showP(PInfoPage pip, User user) {
 		JTextArea[] jta = new JTextArea[4];
@@ -172,16 +182,31 @@ public class BattleManager {
 	//포켓몬 생성 기능
 	//0217-02
 	//0217-03
-	public void randomP(User user) {
+	public void randomP(User user, int num) {
 		//System.out.println(user.getuName());
+		ArrayList <Pokemon> r_List = new ArrayList<Pokemon>();	//속성 별 리스트
 
-		int randomIndex = new Random().nextInt(10);
-		int randomLevel = new Random().nextInt(10)+1;
-		//0217-02 user.getEp_list().set(0, pd.getpList().get(randomIndex));
+		//PokemonDao 전체 루프 돌리기
+		for(int i=0; i<pd.getpList().size(); i++) {
+			int pNum = pd.getpList().get(i).getpType();
+			Pokemon poke = pd.getpList().get(i); 	//포켓몬 객체
+
+			//노말, 맵=속성Num 분류
+			if(num== pNum + 5 || pNum == 0) {
+				r_List.add(poke);
+			}
+		}
+		int randomP = new Random().nextInt(r_List.size());
+
 		//적 포켓몬리스트 초기화
 		user.getEp_list().clear();
 		//새로운 적 포켓몬 생성
-		user.getEp_list().add(pd.getpList().get(randomIndex)); //0217-02
+		user.getEp_list().add(r_List.get(randomP));
+
+		int randomLevel = new Random().nextInt(10)+1;
+		//0217-02 user.getEp_list().set(0, pd.getpList().get(randomIndex));
+
+
 
 		//포켓몬 속성 정의
 		user.getEp_list().get(0).setpLevel(randomLevel);
@@ -227,7 +252,7 @@ public class BattleManager {
 		for(int i=0; i<4; i++) {
 			System.out.println(user.getEp_list().get(0).getpSkill().get(i).getsName());
 		}
-	
+
 	}
 
 	public void battle(MainFrame mf, BattlePage bp ,BattleSkillPage bsp, User user, String selK) {
@@ -441,7 +466,7 @@ public class BattleManager {
 	}
 
 
-	
+
 
 	public void changeP(MainFrame mf, JPanel panel, User user, Pokemon poke) {
 		int result = JOptionPane.showConfirmDialog(null, "교체하시겠습니까??", "포켓몬 교체",JOptionPane.YES_NO_OPTION);
@@ -484,71 +509,79 @@ public class BattleManager {
 		this.pip = pip;
 
 
-			int result = JOptionPane.showConfirmDialog(null, "필드의 포켓몬의 체력이 없습니다 교체하세요", "포켓몬 교체",JOptionPane.YES_NO_OPTION);
-			if(result == 0) {
-				for(int i=1; i<user.getUp_list().size(); i++) {
-					if(user.getUp_list().get(i).getpHp() > 0) {
-						panel.setVisible(false);
-						pip = new PInfoPage(mf,bp,user);
-						pip.setVisible(true);
-						mf.add(pip);
-						break;
-					}
+		int result = JOptionPane.showConfirmDialog(null, "필드의 포켓몬의 체력이 없습니다 교체하세요", "포켓몬 교체",JOptionPane.YES_NO_OPTION);
+		if(result == 0) {
+			for(int i=1; i<user.getUp_list().size(); i++) {
+				if(user.getUp_list().get(i).getpHp() > 0) {
+					panel.setVisible(false);
+					pip = new PInfoPage(mf,bp,user);
+					pip.setVisible(true);
+					mf.add(pip);
+					break;
 				}
 			}
-		
+		}
+
 		return panel;
 	}
 
 
-	 public void battleEnd(User user) {
-	      if(user.getUp_list().get(0).getpHp() <= 0) {
-	         System.out.println("패배!");
-	      }else if(user.getEp_list().get(0).getpHp() <= 0) {
-	         System.out.println("승리! 경험치를 " + user.getEp_list().get(0).getSetExp() + "만큼 얻었습니다!");
-	         user.getUp_list().get(0).setExp(user.getUp_list().get(0).getExp() + user.getEp_list().get(0).getSetExp());
-	         System.out.println("현재경험치 : " + user.getUp_list().get(0).getExp());
-	      }
-	   }
+	public void battleEnd(User user) {
+		if(user.getUp_list().get(0).getpHp() <= 0) {
+			System.out.println("패배!");
+		}else if(user.getEp_list().get(0).getpHp() <= 0) {
+			System.out.println("승리! 경험치를 " + user.getEp_list().get(0).getSetExp() + "만큼 얻었습니다!");
+			user.getUp_list().get(0).setExp(user.getUp_list().get(0).getExp() + user.getEp_list().get(0).getSetExp());
+			System.out.println("현재경험치 : " + user.getUp_list().get(0).getExp());
+		}
+	}
 	//포켓몬 캐치 기능 //아이템 매개변수 추가
-		public boolean catchP(User user,JPanel oldPage, Map m,Item item) {
-			System.out.println("캐치메소드");
-			System.out.println(oldPage.toString());
-			this.m = m;
-			this.oldPage = oldPage;
-			Ball b = new Ball();
-			int result = JOptionPane.showConfirmDialog(null, "볼을 사용하시겠습니까?", "포켓몬 잡기",JOptionPane.YES_NO_OPTION);
-			int prob = 0;
-			int iNum = 0;
-			if(item instanceof Ball) {
-				prob = ((Ball) item).getcProb();
-				iNum = ((Ball) item).getiNo();
-			}
-			
-			//No 누르면 
-			if(result == 1) {
-				oldPage.setVisible(false);
-				
-			}else {
-				for(int i=0; i<user.getUi_list().size(); i++) {
-					if(iNum == user.getUi_list().get(i).getiNo()) {
-						user.getUi_list().get(i).setiAmount(user.getUi_list().get(i).getiAmount() - 1);{
-						}
-					}
+	public boolean catchP(User user,JPanel oldPage, Map m,Item item) {
+		System.out.println("캐치메소드");
+		System.out.println(oldPage.toString());
+		this.m = m;
+		this.oldPage = oldPage;
+		Ball b = new Ball();
+		int result = JOptionPane.showConfirmDialog(null, "볼을 사용하시겠습니까?", "포켓몬 잡기",JOptionPane.YES_NO_OPTION);
+		int prob = 0;
+		int iNum = 0;
+		if(item instanceof Ball) {
+			prob = ((Ball) item).getcProb();
+			iNum = ((Ball) item).getiNo();
+		}
+
+		
+		int ctnRan = new Random().nextInt(6)+1;
+
+
+		//No 누르면 
+		if(result == 1) {
+			oldPage.setVisible(false);
+
+		}else {
+			//볼 사용하면 갯수 깎아주는 코드
+			for(int i=0; i<user.getUi_list().size(); i++) {
+				if(iNum == user.getUi_list().get(i).getiNo()) {
+					user.getUi_list().get(i).setiAmount(user.getUi_list().get(i).getiAmount() - 1);
 				}
+			}
+
+			//포켓몬 전송
+			int ran = new Random().nextInt(100)+1;
+			Pokemon ePoke;
+			ePoke = user.getEp_list().get(0);
+			
+		
+				//System.out.println("카운트 랜덤: " + ctnRan);
 				
-				
-				int ran = new Random().nextInt(100)+1;
-				Pokemon ePoke;
-				ePoke = user.getEp_list().get(0);
-				System.out.println("랜덤값"+ran);
-				System.out.println("확률값"+prob);
-				if(ran <= prob) {
+				if(getCtn() == ctnRan) {
+					JOptionPane.showMessageDialog(null ,"포켓몬이 도망쳤다 ㅋㅋㅋ", "포켓몬 도망", 0);
+					return true;
+				}else if(ran <= prob) {
 					if(user.getUp_list().size() >= 4) {
 						user.getTp_list().add(ePoke);
 						JOptionPane.showMessageDialog(null ,"포켓몬이 박스로 전송됨!", "포켓몬 전송", 0);
 						return true;
-						
 					}else {
 						JOptionPane.showMessageDialog(null ,"포켓몬이 UP에 저장됨!", "포켓몬 전송", 0);
 						return true;
@@ -557,7 +590,7 @@ public class BattleManager {
 					JOptionPane.showMessageDialog(null ,"아쉽다! 잡지 못했다!", "포켓몬 전송", 0);
 					return false;
 				}
-			}
-			return false;
-		} 
-	}
+		}
+		return false;
+	} 
+}
