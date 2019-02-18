@@ -43,18 +43,11 @@ public class PChangeView extends JPanel{
    private Pokemon totalPoke;
    private Pokemon myPoke;
    
-   /*private JButton error = new JButton("교체할 포켓몬이 없습니다.");
-   private Dialog errorDialog = new Dialog(mf);
-   
-   private JButton changeP = new JButton("교체가 성공적으로 되었습니다.");
-   private Dialog changePDialog = new Dialog(mf);*/ 
-   
    public PChangeView(MainFrame mf, JPanel oldPage, User user) {
      mc = new MCManager(user);
      this.mf=mf;
       this.pChangeView=this;
       this.centerView = (CenterView)oldPage;
-      //this.mNum=mNum;
       
       this.setLayout(null);
       this.setBounds(0,0,1024,768);
@@ -62,30 +55,20 @@ public class PChangeView extends JPanel{
       this.setBackground(Color.BLUE);
       
       
-      
-      //System.out.println("센터");
-      
-      JLabel recover = new JLabel("교체할 포켓몬을 선택해주세요.");
+      JLabel recover = new JLabel("포켓몬 교체 센터 입니다.");
       recover.setFont(new Font(getName(),4,30));
       recover.setBounds(250, 130, 500, 200);
       this.add(recover);
       
-      JButton btnYes = new JButton("예");
-      btnYes.setBounds(400, 600, 100, 50);
+      JButton btnYes = new JButton("포켓몬 교체");
+      btnYes.setBounds(350, 600, 150, 50);
       btnYes.setFont(new Font(getName(),3,15));
       this.add(btnYes);
       
-      JButton btnNo = new JButton("아니오");
-      btnNo.setBounds(500, 600, 100, 50);
+      JButton btnNo = new JButton("센터로 가기");
+      btnNo.setBounds(500, 600, 150, 50);
       btnNo.setFont(new Font(getName(),3,15));
       this.add(btnNo);
-      
-      
-      //임시
-      for(int i=0 ; i<5 ; i++) {
-    	  
-    	  user.getTp_list().add(i, pd.getpList().get(i));
-      }
       
       JLabel totalName = new JLabel("잡은 포켓몬 목록");
       totalName.setBounds(250, 238, 100, 30);
@@ -97,16 +80,16 @@ public class PChangeView extends JPanel{
       ImageIcon[] ptImgList = new ImageIcon[user.getTp_list().size()];
       JLabel[] totalPokeImg = new JLabel[ptImgList.length];
       for(int i=0 ; i<user.getTp_list().size() ; i++) {
-    	  if(user.getTp_list().size()==0) {
-    		  System.out.println("교체할 포켓몬이 없음");
-    	  }
-    	  else {           
-    		  totalSearchPoke = user.getTp_list().get(i);
-    		  totalPokeNameList[i] = user.getTp_list().get(i).getpName();
-    		  totalPokeImgNo = totalSearchPoke.getpNo();
-    		  ptImgList[i] = new ImageIcon("images/poke/"+totalPokeImgNo+"F.gif");
-    		  totalPokeImg[i] = new JLabel(ptImgList[i]);
-    	  }
+         if(user.getTp_list().size()==0) {
+            System.out.println("교체할 포켓몬이 없음");
+         }
+         else {           
+            totalSearchPoke = user.getTp_list().get(i);
+            totalPokeNameList[i] = user.getTp_list().get(i).getpName();
+            totalPokeImgNo = totalSearchPoke.getpNo();
+            ptImgList[i] = new ImageIcon("images/poke/"+totalPokeImgNo+"F.gif");
+            totalPokeImg[i] = new JLabel(ptImgList[i]);
+         }
       }
       JLabel totalPImg = new JLabel();
       totalPImg.setBounds(500, 250, 200, 160);
@@ -132,16 +115,16 @@ public class PChangeView extends JPanel{
       ImageIcon[] pmImgList = new ImageIcon[user.getUp_list().size()];
       JLabel[] myPokeImg = new JLabel[pmImgList.length];
       for(int i=0 ; i<user.getUp_list().size() ; i++) {
-    	  if(user.getUp_list().size()==0) {
-    		  System.out.println("내 포켓몬이 없음");
-    	  }
-    	  else {           
-    		  mySearchPoke = user.getUp_list().get(i);
-    		  myPokeImgNo = mySearchPoke.getpNo();
-    		  myPokeNameList[i] = user.getUp_list().get(i).getpName();
-    		  pmImgList[i] = new ImageIcon("images/poke/"+myPokeImgNo+"F.gif");
-    		  myPokeImg[i] = new JLabel(pmImgList[i]);
-    	  }
+         if(user.getUp_list().size()==0) {
+            System.out.println("내 포켓몬이 없음");
+         }
+         else {           
+            mySearchPoke = user.getUp_list().get(i);
+            myPokeImgNo = mySearchPoke.getpNo();
+            myPokeNameList[i] = user.getUp_list().get(i).getpName();
+            pmImgList[i] = new ImageIcon("images/poke/"+myPokeImgNo+"F.gif");
+            myPokeImg[i] = new JLabel(pmImgList[i]);
+         }
       }
       JLabel myPImg = new JLabel();
       myPImg.setBounds(500, 400, 200, 180);
@@ -162,14 +145,14 @@ public class PChangeView extends JPanel{
           
           @Override
           public void valueChanged(ListSelectionEvent e) {
-        	  totalSelectedPoke.setText(totalPokeList.getSelectedValue()+"");
-        	  totalSelectedPoke.setHorizontalAlignment(JTextField.CENTER);
-        	  System.out.println("바꿀 : "+totalPokeList.getSelectedValue());
-        	  for(int i=0 ; i<user.getTp_list().size() ; i++) {
-        		  if(totalPokeList.getSelectedValue().equals(user.getTp_list().get(i).getpName())) {
-        			  totalPoke=user.getTp_list().get(i);
-        		  }
-        	  }
+             totalSelectedPoke.setText(totalPokeList.getSelectedValue()+"");
+             totalSelectedPoke.setHorizontalAlignment(JTextField.CENTER);
+             System.out.println("바꿀 : "+totalPokeList.getSelectedValue());
+             for(int i=0 ; i<user.getTp_list().size() ; i++) {
+                if(totalPokeList.getSelectedValue().equals(user.getTp_list().get(i).getpName())) {
+                   totalPoke=user.getTp_list().get(i);
+                }
+             }
           }
        });
       
@@ -177,7 +160,7 @@ public class PChangeView extends JPanel{
           
           @Override
           public void valueChanged(ListSelectionEvent e) {
-        	  totalPImg.setIcon(ptImgList[totalPokeList.getSelectedIndex()]);
+             totalPImg.setIcon(ptImgList[totalPokeList.getSelectedIndex()]);
           }
        });
       this.add(totalPImg);
@@ -187,22 +170,22 @@ public class PChangeView extends JPanel{
           
           @Override
           public void valueChanged(ListSelectionEvent e) {
-        	  mySelectedPoke.setText(myPokeList.getSelectedValue()+"");
-        	  mySelectedPoke.setHorizontalAlignment(JTextField.CENTER);
-        	  System.out.println("내꺼 : "+myPokeList.getSelectedValue());
-        	  for(int i=0 ; i<user.getUp_list().size() ; i++) {
-        		  if(myPokeList.getSelectedValue().equals(user.getUp_list().get(i).getpName())) {
-        			  myPoke=user.getUp_list().get(i);
-        		  }
-        		  
-        	  }
+             mySelectedPoke.setText(myPokeList.getSelectedValue()+"");
+             mySelectedPoke.setHorizontalAlignment(JTextField.CENTER);
+             System.out.println("내꺼 : "+myPokeList.getSelectedValue());
+             for(int i=0 ; i<user.getUp_list().size() ; i++) {
+                if(myPokeList.getSelectedValue().equals(user.getUp_list().get(i).getpName())) {
+                   myPoke=user.getUp_list().get(i);
+                }
+                
+             }
           }
        });
       myPokeList.addListSelectionListener(new ListSelectionListener() {
           
           @Override
           public void valueChanged(ListSelectionEvent e) {
-        	  myPImg.setIcon(pmImgList[myPokeList.getSelectedIndex()]);
+             myPImg.setIcon(pmImgList[myPokeList.getSelectedIndex()]);
           }
        });
       this.add(myPImg);
@@ -212,85 +195,37 @@ public class PChangeView extends JPanel{
          @Override
          public void mousePressed(MouseEvent e) {
             if(myPoke!=null&&totalPoke!=null) {
-            	mc.usepChange(myPoke, totalPoke);
-            	/*changePDialog.setBounds(660, 450, 230, 100);
-            	changePDialog.add(changeP);         
-            	changePDialog.setVisible(true);*/
-            	JOptionPane.showMessageDialog(null, "교체가 성공적으로 진행되었습니다.", "교체성공", JOptionPane.WARNING_MESSAGE);
-            	mf.remove(pChangeView);
-    			centerView.setVisible(true);
-    			mf.requestFocus();
+               mc.usepChange(myPoke, totalPoke);
+               JOptionPane.showMessageDialog(null, "교체가 성공적으로 진행되었습니다.", "교체성공", JOptionPane.WARNING_MESSAGE);
+               mf.remove(pChangeView);
+             centerView.setVisible(true);
+             mf.requestFocus();
             }
             else {
-            	try {
-            		
-            		JOptionPane.showMessageDialog(null, "교체할 포켓몬이 없습니다.", "교체실패", JOptionPane.WARNING_MESSAGE);
-                	mf.remove(pChangeView);
-        			centerView.setVisible(true);
-        			mf.requestFocus();
-            	}catch(NullPointerException x) {
-            		System.out.println("즐");
-            	}
+               try {
+                  
+                  JOptionPane.showMessageDialog(null, "교체할 포켓몬이 없습니다.", "교체실패", JOptionPane.WARNING_MESSAGE);
+                   mf.remove(pChangeView);
+                 centerView.setVisible(true);
+                 mf.requestFocus();
+               }catch(NullPointerException x) {
+                  System.out.println("즐");
+               }
             }
             
             
          }
       });
-      /*settingButton(error);
-      error.addMouseListener(new MouseAdapter() {
-         @Override
-         public void mouseClicked(MouseEvent e) {
-            //mf.remove(yes);
-            //yes.setVisible(false);
-        	 errorDialog.dispose();
-              
-              mf.remove(pChangeView);
-              
-              centerView.setVisible(true);
-              centerView.requestFocus();
-              //m.setEscCtn(0);
-         }
-      });
-      this.add(changeP);
-      
-      settingButton(changeP);
-      changeP.addMouseListener(new MouseAdapter() {
-         @Override
-         public void mouseClicked(MouseEvent e) {
-            //mf.remove(yes);
-            //yes.setVisible(false);
-        	 changePDialog.dispose();
-              
-              mf.remove(pChangeView);
-              
-              centerView.setVisible(true);
-              centerView.requestFocus();
-              //m.setEscCtn(0);
-         }
-      });
-      this.add(changeP);*/
       
       btnNo.addMouseListener(new MouseAdapter() {
          @Override
          public void mousePressed(MouseEvent e) {
-            
-            
-            mf.remove(pChangeView);
-            
-            centerView.setVisible(true);
-            centerView.requestFocus();
-            //((Map)m).start();
-            //m.setEscCtn(0);
-            
+            JOptionPane.showMessageDialog(null, "교체를 취소하셨습니다.", "교체취소", JOptionPane.WARNING_MESSAGE);
+             mf.remove(pChangeView);
+             centerView.setVisible(true);
+             centerView.requestFocus();
          }
       });
-      
-      
-      /*
-      m.setVisible(true);
-      mf.requestFocus();
-      m.setEscCtn(0);
-      mf.remove(centerView);*/
       
       backButton.setBounds(904, 660, 90, 59);
       settingButton(backButton);
@@ -309,16 +244,11 @@ public class PChangeView extends JPanel{
             
             centerView.setVisible(true);
             centerView.requestFocus();
-            //((Map)m).start();
-            //m.setEscCtn(0);
          }
       });
       this.add(backButton);
    }
-   
-
-
-public void paintComponent(Graphics g) {
+   public void paintComponent(Graphics g) {
       
          g.drawImage(pChangeBackground, 0, 0, 1024, 729, this);
    }
