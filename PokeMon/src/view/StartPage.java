@@ -27,6 +27,7 @@ public class StartPage extends JPanel{
 	 private int alpha = 255;
 	  private int increment = -5;
 	  private JLabel label = new JLabel("게임 시작 버튼을 눌러주세요!");
+		private Music m_vill = new Music("village.mp3", false);
 
 	public StartPage(MainFrame mf) {
 		this.mf = mf;
@@ -67,8 +68,8 @@ public class StartPage extends JPanel{
 		
 		
 		
-		JButton startbtn = new JButton("새로 시작");
-		JButton nextPage = new JButton("모험 시작");
+		JButton startbtn = new JButton(new ImageIcon("images/startbtn.png"));
+		JButton nextPage = new JButton(new ImageIcon("images/loadbtn.png"));
 		startbtn.setSize(150,50);
 		startbtn.setLocation(320,320);
 		startbtn.setFont(new Font("바탕체", Font.BOLD, 13));
@@ -95,12 +96,15 @@ public class StartPage extends JPanel{
 			public void mousePressed(MouseEvent e) {
 				 
 				FadeOut fade = new FadeOut(mf);
-				stp.setVisible(false);
-				mf.remove(stp);
+				m_vill.stop();
+				m_vill = new Music("item1.mp3", false);
+				m_vill.start();
 				fade.fadeout(mf);
 				mf.requestFocus();
 				timer.stop();
 				m_main.close();
+				mf.remove(stp);
+			//	stp.setVisible(false);
 			/*	UserDao ud = new UserDao("이름이름");
 				ud.saveUser();*/
 			//	mf.add(new Map(mf, ud.getUserList().get(0)));

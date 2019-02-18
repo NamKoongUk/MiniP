@@ -32,18 +32,17 @@ public class FadeOut extends JPanel{
 
 	}
 	public void fadeout(MainFrame mf) {
-		Timer timer = new Timer(30, new ActionListener() {
+		Timer timer = new Timer(40, new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				alpha += increment;
 				if (alpha > 255 && starton == 0) {
 					//increment = -increment;
 					starton = 1;
-					fade.setVisible(false);
+					//fade.setVisible(false);
 					mf.remove(fade);
 					UserDao ud = new UserDao("이름이름");
-					ud.saveUser();
-					System.out.println("dd");
+					ud.saveUser(); 
 					mf.add(new Map(mf, ud.getUserList().get(0)));
 				}
 				/*if (alpha <= 0) {

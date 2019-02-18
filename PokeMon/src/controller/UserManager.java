@@ -54,9 +54,9 @@ public class UserManager {
 	//유저 생성시간 라벨로 만들어 리턴
 	public JLabel viewCreateTime() {
 		JLabel createTimeLabel = new JLabel();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd E요일 hh시 mm분");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh시 mm분");
 		String time = sdf.format(user.getuDate());
-		createTimeLabel.setText("캐릭터 생성시간 : " + time);
+		createTimeLabel.setText(time + " 생성");
 		createTimeLabel.setFont(new Font("",Font.CENTER_BASELINE,10));
 		return createTimeLabel;
 	}

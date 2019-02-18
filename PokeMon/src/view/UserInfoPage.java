@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -45,7 +46,8 @@ public class UserInfoPage extends JPanel implements KeyListener{
 		
 		userNameLabel = um.viewUserName();
 		playTimeLabel = new JLabel();
-		playTimeLabel.setText(um.viewUserTime());
+		//playTimeLabel.setText(um.viewUserTime());
+		playTimeLabel.setText("플레이 타임 : " + Integer.toString(user.getScd()) + "초");
 		createTime = um.viewCreateTime();
 		goldLabel = um.getUserGold();
 		getPokeLabel = um.viewUserGetPoke();
@@ -91,11 +93,13 @@ public class UserInfoPage extends JPanel implements KeyListener{
 		label.setBounds(450, 20, 200, 40);
 		
 		charactorLabel.setBounds(110, 150, 250, 450);
-		userNameLabel.setBounds(620, 100, 200, 120);
-		createTime.setBounds(620, 240, 300, 120);
-		playTimeLabel.setBounds(620,360,300,100);
-		goldLabel.setBounds(620, 460, 300, 100);
-		getPokeLabel.setBounds(620, 550, 300, 100);
+		userNameLabel.setBounds(550, 100, 200, 120);
+		createTime.setBounds(550, 240, 3000, 120);
+		createTime.setFont(new Font("돋움체", Font.BOLD, 20));
+		playTimeLabel.setBounds(550,360,300,100);
+		playTimeLabel.setFont(new Font("돋움체", Font.BOLD, 25));
+		goldLabel.setBounds(550, 460, 300, 100);
+		getPokeLabel.setBounds(550, 550, 300, 100);
 		
 		
 		this.add(label);

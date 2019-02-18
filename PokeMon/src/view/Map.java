@@ -213,6 +213,10 @@ public class Map extends JPanel implements Runnable, KeyListener {
 	public void DrawImg() {
 		gc.setFont(new Font("Default", Font.BOLD, 20));
 		gc.drawString(Integer.toString(cnt), 50, 50);
+		if(cnt%50 == 0) {
+			user.setScd(user.getScd() + 1);
+		}
+		
 		gc.drawString(Integer.toString((playerMove)?1:0),200, 50);
 
 		switch(num) {
@@ -270,11 +274,11 @@ public class Map extends JPanel implements Runnable, KeyListener {
 				gc.drawString(dialogstr, nx, ny);*/
 				switch(oh) {
 				case 1 :{
-					escCtn=1;
-					System.out.println("스타팅 포켓몬");
-					y += 50;
 					//this.market = new Market(mf,m);
 					if(ohOn == 0) {
+						escCtn=1;
+						System.out.println("스타팅 포켓몬");
+						y += 50;
 						m.setVisible(false);
 						mf.add(lp);
 						lp.setVisible(true);
@@ -431,13 +435,18 @@ public class Map extends JPanel implements Runnable, KeyListener {
 		//--------------------------------------
 		//체육관
 		if( num == 4 && (x > 390 && x<440) && (y>670)) {
+			m_vill.stop();
+			m_vill = new Music("village.mp3", false);
+			m_vill.start();
 			num =0;
 			x= 488;
 			y = 150;
 		}
 		//마을_체육관입
 		if( num ==0 &&(x >480 && x <510) && (y<148)) {
-
+			m_vill.stop();
+			m_vill = new Music("gym.mp3", false);
+			m_vill.start();
 			num =4;
 			x = 430;
 			y=670;
@@ -445,25 +454,37 @@ public class Map extends JPanel implements Runnable, KeyListener {
 		//--------------------------------------
 		//연구소
 		if( num == 3 && (x > 500 && x<550) && (y>670)) {
+			m_vill.stop();
+			m_vill = new Music("village.mp3", false);
+			m_vill.start();
 			num =0;
 			x= 180;
 			y = 140;
 		}
 		//마을_연구소입
 		if( num ==0 &&(x > 170 && x < 200) && (y<140)){
+			m_vill.stop();
+			m_vill = new Music("lab.mp3", false);
+			m_vill.start();
 			num =3;
 			x = 525;
-			y=670;
+			y=670; 
 		}
 		//--------------------------------------
 		//센터
 		if( num == 1 && (x > 450 && x<500) && (y>670)) {
+			m_vill.stop();
+			m_vill = new Music("village.mp3", false);
+			m_vill.start();
 			num =0;
 			x= 765;
 			y = 610;
 		}
 		//마을_센터입
 		if( num == 0 && (x > 750 && x< 780) && (y<610 && y>550)) {
+			m_vill.stop();
+			m_vill = new Music("center.mp3", false);
+			m_vill.start();
 			num =1;
 			x= 475;
 			y = 670;   
@@ -499,6 +520,7 @@ public class Map extends JPanel implements Runnable, KeyListener {
 		//--------------------------------------
 		//사냥터
 		if(num == 5 && (x > 460 && x < 560) && (y < 0)) {
+			
 			num = 0;
 			x = 490;
 			y = 670;
@@ -511,36 +533,54 @@ public class Map extends JPanel implements Runnable, KeyListener {
 		}
 		//사냥터_불
 		if(num == 5 && (x < 0) && (y > 260 & y < 410)) {
+			m_vill.stop();
+			m_vill = new Music("hunt.mp3", false);
+			m_vill.start();
 			num = 6;
 			x = 510;
 			y = 0;
 		}
 		//불사냥터 퇴장
 		if(num == 6 && (x > 460 && x < 560) && (y < 0)) {
+			m_vill.stop();
+			m_vill = new Music("village.mp3", false);
+			m_vill.start();
 			num = 5;
 			x = 10;
 			y = 335;
 		}
 		//사냥터_물
 		if(num == 5 && (x > 979) && (y > 260 & y < 410)) {
+			m_vill.stop();
+			m_vill = new Music("hunt.mp3", false);
+			m_vill.start();
 			num = 7;
 			x = 510;
 			y = 0;
 		}
 		//물사냥터 퇴장
 		if(num == 7 && (x > 400 && x < 510) && (y < 0)) {
+			m_vill.stop();
+			m_vill = new Music("village.mp3", false);
+			m_vill.start();
 			num = 5;
 			x = 979;
 			y = 335;
 		}
 		//사냥터_풀
 		if(num == 5 && (x > 460 && x < 560) && (y > 680)) {
+			m_vill.stop();
+			m_vill = new Music("hunt.mp3", false);
+			m_vill.start();
 			num = 8;
 			x = 510;
 			y = 0;
 		}
 		//풀사냥터 퇴장
 		if(num == 8 && (x > 450 && x < 580) && (y < 0)) {
+			m_vill.stop();
+			m_vill = new Music("village.mp3", false);
+			m_vill.start();
 			num = 5;
 			x = 510;
 			y = 670;

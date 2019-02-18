@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -58,10 +59,19 @@ public class LabPage extends JPanel {
 		talkList2[1] = "이제 마을 밖으로 나가봐도 좋네. 가는 길에 상점도 들러보면 좋겠지.";
 		
 	    JTextField tTf = new JTextField(40);
+	    tTf.setOpaque(false);
+	    JLabel temp = new JLabel(new ImageIcon("images/dial.png"));
+	    temp.setBounds(60, 535, 900, 150);
+	    temp.setLayout(new BorderLayout());
 	    tTf.setText(talkList[0]);
 	    tTf.setBounds(60, 535, 900, 150);
 	    tTf.setEditable(false);
 	    tTf.setHorizontalAlignment(JTextField.CENTER);
+	    tTf.setFont(new Font("돋움체", Font.BOLD, 25));
+	   // tTf.setForeground(Color.white);
+	   // tTf.setBackground(Color.black);
+	    temp.add(tTf);
+	    
 	    
 	    //스타팅 포켓몬 정보
 	    int pNo = 0;
@@ -223,7 +233,8 @@ public class LabPage extends JPanel {
 		});
 		
 		this.add(back);
-		this.add(tTf);
+		//this.add(tTf);
+		this.add(temp);
 				
 		this.setBackground(Color.white);
 		this.setVisible(true);
