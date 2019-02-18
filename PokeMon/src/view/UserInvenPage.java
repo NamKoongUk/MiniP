@@ -51,7 +51,7 @@ public class UserInvenPage extends JPanel {
 
 	private ItemDao id = new ItemDao();
 
-	public UserInvenPage(MainFrame mf,JPanel oldPage,User user,Map m) {
+	public UserInvenPage(MainFrame mf,JPanel oldPage,User user,Map m, BattleManager bm) {
 		this.mf = mf;
 		this.ump = ump;
 		this.uivp = this;
@@ -184,53 +184,56 @@ public class UserInvenPage extends JPanel {
 			}
 			@Override
 			public void mousePressed(java.awt.event.MouseEvent e) {
-				//선택한 아이템이 있을때 다음페이지로 넘어감
-				String userItemName = null;
-				userItemName = itemName.getSelectedValue()+""; //선택한 아이템 리셋
-				System.out.println(userItemName==null);
-				if(userItemName!=null) {
-					uivp.setVisible(false);
-					mf.remove(uivp);
-				}
-				ItemDao iList = new ItemDao();
-				Item checkItem = null;
-				checkItem = new ItemManager(user).itemReturn(userItemName);
+				   //선택한 아이템이 있을때 다음페이지로 넘어감
+	            String userItemName = null;
+	               userItemName = itemName.getSelectedValue()+""; //선택한 아이템 리셋
+	               if(!(userItemName.equals("null"))) {
+	                  uivp.setVisible(false);
+	                  mf.remove(uivp);
+	               } else {
+	                  JOptionPane.showMessageDialog(null, "아이템을 선택해주세요", "에러", JOptionPane.WARNING_MESSAGE);
+	               }
+	            ItemDao iList = new ItemDao();
+	            Item checkItem = null;
+	            checkItem = new ItemManager(user).itemReturn(userItemName);
 
 
 
-				//유저인벤에서는 볼을 사용 할 수 없음
-				if(oldPage instanceof BattlePage) {
-					if(checkItem instanceof Ball) {
-						if(!(bm.catchP(user, oldPage, m, checkItem))) {
-							System.out.println("못잡았을때");
-							oldPage.setVisible(true);
-						} else {
-							System.out.println("잡았을때");
-							oldPage.setVisible(false);
-							mf.remove(oldPage);
-							m.setVisible(true);
-							m.setCantmove(false);
-						}
-						//uivp.setVisible(false);
-					}
-				}else {
-					if(checkItem instanceof Ball) {
-						JOptionPane.showMessageDialog(null, "볼종류는 배틀중에만 사용할 수 있습니다", "에러", JOptionPane.WARNING_MESSAGE);
-						mf.add(uivp);
-						uivp.setVisible(true);
-					} else {
-						for(int i=0; i<itemList.size(); i++) {
-							//선택한 아이템과 소지중인 아이템으로 번호를 받아 메소드 실행
-							if(itemList.get(i).getiName().equals(userItemName)) {
-								uivp.setVisible(false);
-								mf.add(new PInfoPage(mf, uivp, user,userItemName)); //0217-01;
-								/////아이템 사용후 이전페이지로 돌아왔을때 화면 업데이트 문제
-							}
-						}
-					}
-				}
-			}
-		});
+	            //유저인벤에서는 볼을 사용 할 수 없음
+	            if(oldPage instanceof BattlePage) {
+	               if(checkItem instanceof Ball) {
+	                  if(!(bm.catchP(user, oldPage, m, checkItem))) {
+	                     bm.setCtn(bm.getCtn() + 1);
+	                     System.out.println("못잡았을때");
+	                     oldPage.setVisible(true);
+	                  } else {
+	                     bm.setCtn(bm.getCtn() + 1);
+	                     System.out.println("잡았을때");
+	                     oldPage.setVisible(false);
+	                     mf.remove(oldPage);
+	                     m.setVisible(true);
+	                     m.setCantmove(false);
+	                  }
+	                  //uivp.setVisible(false);
+	               }
+	            }else {
+	               if(checkItem instanceof Ball) {
+	                  JOptionPane.showMessageDialog(null, "볼종류는 배틀중에만 사용할 수 있습니다", "에러", JOptionPane.WARNING_MESSAGE);
+	                  mf.add(uivp);
+	                  uivp.setVisible(true);
+	               } else {
+	                  for(int i=0; i<itemList.size(); i++) {
+	                     //선택한 아이템과 소지중인 아이템으로 번호를 받아 메소드 실행
+	                     if(itemList.get(i).getiName().equals(userItemName)) {
+	                        uivp.setVisible(false);
+	                        mf.add(new PInfoPage(mf, uivp, user,userItemName)); //0217-01;
+	                        /////아이템 사용후 이전페이지로 돌아왔을때 화면 업데이트 문제
+	                     }
+	                  }
+	               }
+	            }
+	         }
+	      });
 		this.add(useButton);
 
 		/*upButton.setBounds(200, 20, 95, 95);
