@@ -4,11 +4,11 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import model.dao.UserDao;
+import model.vo.User;
 
 public class FadeOut extends JPanel{
 
@@ -16,7 +16,7 @@ public class FadeOut extends JPanel{
 	private Map m;
 	private FadeOut fade;
 	private int alpha = 0;
-	private int increment = 5;
+	private int increment = 10;
 	private int starton = 0;
 	
 	public FadeOut(MainFrame mf){
@@ -29,9 +29,10 @@ public class FadeOut extends JPanel{
 		this.setBackground(new Color(0, 0, 0,0));
 
 		
+		
 
 	}
-	public void fadeout(MainFrame mf) {
+	public void fadeout(MainFrame mf,User user) {
 		Timer timer = new Timer(40, new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -41,16 +42,19 @@ public class FadeOut extends JPanel{
 					starton = 1;
 					//fade.setVisible(false);
 					mf.remove(fade);
-					UserDao ud = new UserDao("이름이름");
-					ud.saveUser(); 
-					mf.add(new Map(mf, ud.getUserList().get(0)));
+				/*	UserDao ud = new UserDao("이름이름");
+					ud.saveUser(); */
+					mf.add(new Map(mf, user));
 				}
 				/*if (alpha <= 0) {
 					alpha = 0;
 					increment = -increment;
 				}*/
+				try {
 				fade.setBackground(new Color(0, 0, 0, alpha));
-				
+				}catch(Exception e1){
+					
+				}
 			}
 		});
 		timer.start();

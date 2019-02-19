@@ -84,12 +84,25 @@ public class StartPage extends JPanel{
 			public void mousePressed(MouseEvent e) {
 
 
+				OpeningPage opp = new OpeningPage(mf,user);
+				m_vill.stop();
+				m_vill = new Music("item1.mp3", false);
+				m_vill.start();
+				opp.opening(mf);
+				opp.setVisible(true);
+				mf.requestFocus(); 
+				timer.stop();
+				m_main.close();
+				mf.remove(stp);
+				
+				
 
 				/*mf.remove(stp);
 	            m.setVisible(true);
 	            mf.requestFocus();
 	            ((Map) m).start();*/
 
+				
 			}
 		});
 		nextPage.addMouseListener(new MouseAdapter() {
@@ -99,7 +112,7 @@ public class StartPage extends JPanel{
 				m_vill.stop();
 				m_vill = new Music("item1.mp3", false);
 				m_vill.start();
-				fade.fadeout(mf);
+				fade.fadeout(mf,user);
 				mf.requestFocus();
 				timer.stop();
 				m_main.close();
