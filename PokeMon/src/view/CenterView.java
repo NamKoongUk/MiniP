@@ -1,24 +1,19 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Dialog;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import controller.MCManager;
-import model.vo.Pokemon;
 import model.vo.User;
 
 public class CenterView extends JPanel{
-
       private MainFrame mf;
       private CenterView centerView;
       private Map m;
@@ -27,16 +22,11 @@ public class CenterView extends JPanel{
       private MCManager mc;
       private int ans=0;
       private Image centerBackground = new ImageIcon("images/maketViewImages/centerView.gif").getImage();
-      
       private RecoveryView rv ;
       private PChangeView pv;
-      
       private User user;
-      
       private PInfoPage pinfo;
-      
       private RecoveryView recoveryView;
-      
       public CenterView(MainFrame mf, JPanel oldPage, User user) {
         mc = new MCManager(user);
         this.mf=mf;
@@ -49,20 +39,17 @@ public class CenterView extends JPanel{
          
          this.setBackground(Color.BLUE);
          
-
          JLabel recover = new JLabel("센터에 오신걸 환영합니다.");
 
          recover.setFont(new Font(getName(),4,30));
          recover.setBounds(330, 200, 600, 200);
          this.add(recover);
          
-
          JButton btnRecovery = new JButton("포켓몬 회복");
 
          btnRecovery.setBounds(310, 400, 200, 50);
          btnRecovery.setFont(new Font(getName(),3,15));
          this.add(btnRecovery);
-         
 
          JButton btnPChange = new JButton("포켓몬 교체");
 
@@ -73,9 +60,7 @@ public class CenterView extends JPanel{
          btnRecovery.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-
                System.out.println("포켓몬 회복 페이지로 이동");
-
                rv = new RecoveryView(mf, centerView, user);
                
                centerView.setVisible(false);

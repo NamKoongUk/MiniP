@@ -19,10 +19,7 @@ import javax.swing.JTextArea;
 
 import model.dao.PokemonDao;
 
-
-
 public class PBookPage extends JPanel{
-
    
    private JPanel pb;
    private MainFrame mf;
@@ -70,7 +67,6 @@ public class PBookPage extends JPanel{
       
       this.setBounds(0, 0, 1024, 768);
       
-      
       mf.addKeyListener(new KeyAdapter() {
          public void keyPressed(KeyEvent e) {
             if(e.getKeyCode() == UserMenuPage.ESC) {
@@ -87,12 +83,9 @@ public class PBookPage extends JPanel{
       label.setBounds(450, 20, 200, 40);
       this.setBackground(Color.WHITE);
 
-
       for(int i=0; i<=5; i++) {
          pInfo[i] = new JLabel(imageList.get(i));
       }
-
-
       
       leftButton.setBounds(20, 320, 95, 95);
       leftButton.setBorderPainted(false);
@@ -102,13 +95,9 @@ public class PBookPage extends JPanel{
       leftButton.addMouseListener(new MouseAdapter() {
          @Override
          public void mouseEntered(MouseEvent e) {
-//            leftButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-//            leftButton.setIcon(new ImageIcon("images/userMenuImages/leftButtonEntered.PNG"));
          }
          @Override
          public void mouseExited(MouseEvent e) {
-//            leftButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-//            leftButton.setIcon(new ImageIcon("images/userMenuImages/leftButtonBasic.PNG"));
          }
          @Override
          public void mousePressed(MouseEvent e) {
@@ -123,7 +112,7 @@ public class PBookPage extends JPanel{
          }
       });
       
-      rightButton.setBounds(900, 320, 95, 95);
+      rightButton.setBounds(910, 320, 95, 95);
       rightButton.setBorderPainted(false);
       rightButton.setFocusPainted(false);
       rightButton.setContentAreaFilled(false);
@@ -131,17 +120,12 @@ public class PBookPage extends JPanel{
       rightButton.addMouseListener(new MouseAdapter() {
          @Override
          public void mouseEntered(MouseEvent e) {
-//            rightButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-//            rightButton.setIcon(new ImageIcon("images/userMenuImages/rightButtonEntered.PNG"));
          }
          @Override
          public void mouseExited(MouseEvent e) {
-//            rightButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-//            rightButton.setIcon(new ImageIcon("images/userMenuImages/rightButtonBasic.PNG"));
          }
          @Override
          public void mousePressed(MouseEvent e) {
-            
             if(page<lastPage) {
                clickPBookRightButton(page);
                page ++;
@@ -152,18 +136,13 @@ public class PBookPage extends JPanel{
          }
       });
       backButton.setBounds(905, 657, 90, 60);
-      
       //뒤로 가기 버튼
       backButton.addMouseListener(new MouseAdapter() {
          @Override
          public void mouseEntered(MouseEvent e) {
-//            backButton.setIcon(new ImageIcon("images/userMenuImages/backButtonEntered.PNG"));
-//            backButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
          }
          @Override
          public void mouseExited(MouseEvent e) {
-//            backButton.setIcon(new ImageIcon("images/userMenuImages/backButtonBasic.PNG"));
-//            backButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
          }
          @Override
          public void mousePressed(MouseEvent e) {
@@ -173,10 +152,7 @@ public class PBookPage extends JPanel{
          }
       });
       
-      
       setBoundPInfo();
-
-
 
       for(int i=0; i<=pInfo.length-1; i++) {
          this.add(pInfo[i]);
@@ -186,11 +162,8 @@ public class PBookPage extends JPanel{
       this.add(leftButton);
       this.add(backButton);
       this.add(rightButton);
-      
    }
-
    //이미지 list저장 메소드
-
    public void pBookImage() {
 	   lastPage=3;
 	   image = new ImageIcon(("images/userMenuImages/pBook/"+1+".PNG"));
@@ -229,29 +202,6 @@ public class PBookPage extends JPanel{
        imageList.add(image);           
        image = new ImageIcon(("images/userMenuImages/pBook/nonImage.png"));
        imageList.add(image);           
-       
-	   
-         /*if(pokemonMax%6==0) {
-            
-            for(int i=0; i<lastPage*6; i++) {
-               image = new ImageIcon(("images/userMenuImages/pBook/"+(i+1)+".PNG"));
-                imageList.add(image);
-            }
-            
-         }else {
-            for(int i=0 ; i<lastPage*6 ; i++) {
-               if(i<=pokemonMax) {
-                  image = new ImageIcon(("images/userMenuImages/pBook/"+(i+1)+".PNG"));
-                    imageList.add(image);
-                  
-               }else {
-                  image = new ImageIcon(("images/userMenuImages/pBook/nonImage.png"));
-                  imageList.add(image);               }
-               
-            }
-            
-         }*/
-         
    }
    public void clickPBookRightButton(int Page) {
       int max = Page*6;
@@ -286,7 +236,6 @@ public class PBookPage extends JPanel{
       setBoundPInfo();
    }
    public void setBoundPInfo() {
-      
       pInfo[0].setBounds(125, 145, 250, 250);
       pInfo[1].setBounds(385, 145, 250, 250);
       pInfo[2].setBounds(645, 145, 250, 250);
@@ -294,17 +243,13 @@ public class PBookPage extends JPanel{
       pInfo[4].setBounds(385, 385, 250, 250);
       pInfo[5].setBounds(645, 385, 250, 250);
       
-      
    }
    public void paintComponent(Graphics g) {
-      
          g.drawImage(pBookBackgroundLabel, 0, 0, 1024, 729, pb);
    }
-
    public void settingButton(JButton jb) {
    jb.setBorderPainted(false);
    jb.setFocusPainted(false);
    jb.setContentAreaFilled(false);
-}
-   
+   }
 }
