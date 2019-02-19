@@ -33,7 +33,7 @@ public class UserInfoPage extends JPanel implements KeyListener{
 	private JLabel goldLabel;
 	private JLabel getPokeLabel;
 	private JLabel userNameLabel;
-	private JButton backButton = new JButton(new ImageIcon("images/userMenuImages/backButtonBasic.PNG"));
+	private JButton backButton = new JButton(new ImageIcon("images/maketViewImages/marketViewBack.png")); //
 	private User user;
 	
 	public UserInfoPage(MainFrame mf,UserMenuPage ump,User user) {
@@ -78,13 +78,11 @@ public class UserInfoPage extends JPanel implements KeyListener{
 		backButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				backButton.setIcon(new ImageIcon("images/userMenuImages/backButtonEntered.PNG"));
-				backButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+				//
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				backButton.setIcon(new ImageIcon("images/userMenuImages/backButtonBasic.PNG"));
-				backButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+				//
 			}
 			@Override
 			public void mousePressed(java.awt.event.MouseEvent e) {
@@ -97,13 +95,15 @@ public class UserInfoPage extends JPanel implements KeyListener{
 		label.setBounds(450, 20, 200, 40);
 		
 		charactorLabel.setBounds(150, 190, 250, 450);
-		userNameLabel.setBounds(680, 115, 200, 120);
+		userNameLabel.setBounds(675, 115, 200, 120); //
 		createTime.setBounds(753, 278, 300, 120);
 		createTime.setFont(new Font("",Font.CENTER_BASELINE, 18));
 		playTimeLabel.setBounds(830, 350, 300,100);
 		playTimeLabel.setFont(new Font("",Font.CENTER_BASELINE, 18));
-		goldLabel.setBounds(550, 460, 300, 100);
-		getPokeLabel.setBounds(550, 550, 300, 100);
+		goldLabel.setBounds(825, 410, 300, 100);
+		goldLabel.setFont(new Font("",Font.CENTER_BASELINE, 18)); //
+		getPokeLabel.setBounds(820, 470, 300, 100);
+		getPokeLabel.setFont(new Font("",Font.CENTER_BASELINE, 18)); //
 		
 		
 		this.add(label);
