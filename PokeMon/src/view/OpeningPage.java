@@ -92,6 +92,7 @@ public class OpeningPage extends JPanel{
 		// tTf.setForeground(Color.white);
 		// tTf.setBackground(Color.black);
 
+		
 
 		tTf.addMouseListener(new MouseListener() {
 			@Override

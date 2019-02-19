@@ -29,6 +29,7 @@ public class FadeOut extends JPanel{
 		this.setBackground(new Color(0, 0, 0,0));
 
 		
+		
 
 	}
 	public void fadeout(MainFrame mf,User user) {

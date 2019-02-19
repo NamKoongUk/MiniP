@@ -102,6 +102,7 @@ public class StartPage extends JPanel{
 	            mf.requestFocus();
 	            ((Map) m).start();*/
 
+				
 			}
 		});
 		nextPage.addMouseListener(new MouseAdapter() {

@@ -641,6 +641,7 @@ public class Map extends JPanel implements Runnable, KeyListener {
 			Rectangle flower = new Rectangle(900, 183, 100, 25);
 			if(rect.intersects(flower)){canMove();}
 
+			
 			//오박사집 안갔을때
 			if(ohOn == 0) {
 				Rectangle ohOh = new Rectangle(455, 680, 100, 25);
