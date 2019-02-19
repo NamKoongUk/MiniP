@@ -2,6 +2,8 @@ package view;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -35,7 +37,8 @@ public class PInfoPage extends JPanel{
 
 	private JLabel[] pInfo = new JLabel[4];
 	private JTextArea[] pInfoText = new JTextArea[4];
-	private JButton backButton = new JButton(new ImageIcon("images/userMenuImages/backButtonBasic.png"));
+	private JButton backButton = new JButton(new ImageIcon("images/maketViewImages/marketViewBack.png"));
+	private Image pInfoBackground = new ImageIcon("images/pInfoPage.png").getImage();
 
 	
 	public PInfoPage(MainFrame mf, JPanel oldPage, User user) {
@@ -81,21 +84,17 @@ public class PInfoPage extends JPanel{
 
 		pip.setBackground(Color.WHITE);
 		pip.setLayout(null);
-		backButton.setBounds(900, 610, 90, 120);
-		backButton.setBorderPainted(false);
-		backButton.setFocusPainted(false);
-		backButton.setContentAreaFilled(false);
+		backButton.setBounds(905, 657, 90, 60);
+		
 
 		backButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				backButton.setIcon(new ImageIcon("images/userMenuImages/backButtonEntered.PNG"));
-				backButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+				
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				backButton.setIcon(new ImageIcon("images/userMenuImages/backButtonBasic.PNG"));
-				backButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+				
 			}
 			@Override
 			public void mousePressed(java.awt.event.MouseEvent e) {
@@ -173,10 +172,10 @@ public class PInfoPage extends JPanel{
 
 
 		label.setBounds(450, 20, 200, 40);
-		pInfo[0].setBounds(220, 30, 300, 180);
-		pInfo[1].setBounds(560, 30, 300, 180);
-		pInfo[2].setBounds(220, 360, 300, 180);
-		pInfo[3].setBounds(560, 360, 300, 180);
+		pInfo[0].setBounds(220, 30, 300, 150);
+		pInfo[1].setBounds(560, 30, 300, 150);
+		pInfo[2].setBounds(220, 360, 300, 150);
+		pInfo[3].setBounds(560, 360, 300, 150);
 
 		pInfoText[0].setBounds(180,220,280,130);
 		pInfoText[1].setBounds(520,220,280,130);
@@ -423,7 +422,9 @@ public class PInfoPage extends JPanel{
 		this.pInfoText = pInfoText;
 	}
 
-
+	public void paintComponent(Graphics g) {
+	      g.drawImage(pInfoBackground, 0, 0, 1024, 729, this);
+	}	   
 
 
 }
