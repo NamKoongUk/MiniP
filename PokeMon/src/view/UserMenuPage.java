@@ -27,7 +27,12 @@ public class UserMenuPage extends JPanel {
    private SavePage sp;
    private UserInvenPage uivp;
    private PBookPage pb;
-   private BattleManager bm = new BattleManager();
+
+  
+
+   private BattleManager bm;
+   	
+
    private JLabel userMenuImage = new JLabel(new ImageIcon("images/userMenuImages/userMenuImage.png"));
    private JButton saveButton = new JButton(new ImageIcon("images/userMenuImages/savePageButton.PNG"));
    private JButton pBookButton = new JButton(new ImageIcon("images/userMenuImages/pBookButton.PNG"));
