@@ -3,6 +3,7 @@ package controller;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -43,18 +44,27 @@ public class BattleManager {
 	private Map m;
 	private JPanel oldPage;
 	private int ctn;
+	private UserInvenPage uivp;
+	private LevelUpManager lm = new LevelUpManager();
+	
+	
+	
+	
+	
+	
+	
+	
 	 public int getCtn() {
 		return ctn;
 	}
 	public void setCtn(int ctn) {
 		this.ctn = ctn;
 	}
+	
+	
 
 
 
-
-
-	private UserInvenPage uivp;
 
 
 
@@ -209,23 +219,43 @@ public class BattleManager {
 	      //새로운 적 포켓몬 생성
 	      user.getEp_list().add(r_List.get(randomP));
 
-	      int randomLevel = new Random().nextInt(10)+1;
+	      int randomLevel = user.getUp_list().get(0).getpLevel() +( new Random().nextInt(3));
 	      //0217-02 user.getEp_list().set(0, pd.getpList().get(randomIndex));
 
 
 
 
 		//포켓몬 속성 정의
-		user.getEp_list().get(0).setSetExp(randomLevel);
-		user.getEp_list().get(0).setpLevel(randomLevel);
+		
+		/*user.getEp_list().get(0).setpLevel(randomLevel);
 		user.getEp_list().get(0).setExp(randomLevel);
 		user.getEp_list().get(0).setpHp(300);
 		user.getEp_list().get(0).setpSpeed(randomLevel);
-		user.getEp_list().get(0).setExp(randomLevel);
-		user.getEp_list().get(0).setpMaxHp(300);
+		user.getEp_list().get(0).setpMaxHp(300);*/
+		
+		int randomMaxHP = new Random().nextInt(21)+30;
+		for(int i = 0; i < randomLevel; i++) {
+			randomMaxHP += (randomMaxHP*1.2);
+		}
+		
+		int randomSP = new Random().nextInt(11)+10;
+		for(int i = 0; i < randomLevel; i++) {
+			randomSP += (randomSP*1.1);
+		}
+		
+		int randomSEXP = 15;
+		for(int i = 0; i < randomLevel; i++) {
+			randomSEXP += (randomSEXP*1.2);
+		}
 
+		
+		user.getEp_list().get(0).setSetExp(randomSEXP);
+		user.getEp_list().get(0).setpHp(randomMaxHP);
+		user.getEp_list().get(0).setpMaxHp(randomMaxHP);
+		user.getEp_list().get(0).setpSpeed(randomSP);
+		
 
-
+		
 		//포켓몬 스킬 정의
 		while(user.getEp_list().get(0).getpSkill().size() < 5) {
 			int random = new Random().nextInt(18);
@@ -560,6 +590,7 @@ public class BattleManager {
 		System.out.println("승리! 경험치를 " + user.getEp_list().get(0).getSetExp() + "만큼 얻었습니다!");
 		user.getUp_list().get(0).setExp(user.getUp_list().get(0).getExp() + user.getEp_list().get(0).getSetExp());
 		System.out.println("현재경험치 : " + user.getUp_list().get(0).getExp());
+		lm.levelup(user);
 
 	}
 	//배틀 페이지 체력

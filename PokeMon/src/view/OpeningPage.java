@@ -88,7 +88,7 @@ public class OpeningPage extends JPanel{
 		tTf.setBounds(60, 535, 900, 150);
 		tTf.setEditable(false);
 		tTf.setHorizontalAlignment(JTextField.CENTER);
-		tTf.setFont(new Font("∞ÌµÒ", Font.BOLD, 25));
+		tTf.setFont(new Font("∞ÌµÒ√º", Font.BOLD, 25));
 		// tTf.setForeground(Color.white);
 		// tTf.setBackground(Color.black);
 

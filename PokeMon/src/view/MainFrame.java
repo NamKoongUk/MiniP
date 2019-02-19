@@ -3,6 +3,7 @@ package view;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 public class MainFrame extends JFrame{
@@ -18,7 +19,7 @@ public class MainFrame extends JFrame{
 		int ypos = (int)(screen.getHeight() / 2 - getHeight() / 2);
 		this.setLocation(xpos, ypos);
 		this.setResizable(false);
-		
+		this.setIconImage(new ImageIcon("images/itemImages/i000.PNG").getImage());
 		new StartPage(this);
 		//new Map(this);
 		this.setVisible(true);
