@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controller.BattleManager;
 import model.vo.User;
 
 
@@ -26,7 +27,8 @@ public class UserMenuPage extends JPanel {
    private SavePage sp;
    private UserInvenPage uivp;
    private PBookPage pb;
-   
+   private BattleManager bm;
+   	
    private JLabel userMenuImage = new JLabel(new ImageIcon("images/userMenuImages/userMenuImage.png"));
    private JButton saveButton = new JButton(new ImageIcon("images/userMenuImages/savePageButton.PNG"));
    private JButton pBookButton = new JButton(new ImageIcon("images/userMenuImages/pBookButton.PNG"));
@@ -156,7 +158,7 @@ public class UserMenuPage extends JPanel {
             ump.setVisible(false);
             //0217-01 uivp.setVisible(true);
             //0217-01 mf.add(uivp);
-            mf.add(new UserInvenPage(mf, ump, user,m)); //0217-01;
+            mf.add(new UserInvenPage(mf, ump, user,m,bm)); //0217-01;
          }
       });
       this.add(userInvenButton);

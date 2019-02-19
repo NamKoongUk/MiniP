@@ -65,6 +65,7 @@ public class UserDao{
 	   
 	   user.getUp_list().add(pd.getpList().get(5));
 	   user.getUp_list().get(1).setpHp(30);
+	   user.getUp_list().get(1).setpMaxHp(30);
 	   user.getUp_list().get(1).setGrade(2);
 	   user.getUp_list().add(pd.getpList().get(6));
 	   user.getUp_list().add(pd.getpList().get(7));
