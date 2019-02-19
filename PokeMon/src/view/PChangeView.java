@@ -263,11 +263,9 @@ public class PChangeView extends JPanel{
          }
       });
       
-      backButton.setBounds(904, 660, 90, 59);
+      backButton.setBounds(905, 657, 90, 60);
       settingButton(backButton);
-      backButton.setBorderPainted(false);
-      backButton.setFocusPainted(false);
-      backButton.setContentAreaFilled(false);
+      
       
       backButton.addMouseListener(new MouseAdapter() {
          @Override
