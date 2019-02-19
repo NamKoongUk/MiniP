@@ -150,8 +150,8 @@ public class Map extends JPanel implements Runnable, KeyListener {
 	}
 
 	public void init(){
-		x = 500;
-		y = 600;
+		x = 860;
+		y = 180;
 
 		moveStatus = 2;
 		//케릭터가 시작할때 바라보는 방향은 아래쪽입니다.
@@ -641,6 +641,12 @@ public class Map extends JPanel implements Runnable, KeyListener {
 			Rectangle flower = new Rectangle(900, 183, 100, 25);
 			if(rect.intersects(flower)){canMove();}
 
+			//오박사집 안갔을때
+			if(ohOn == 0) {
+				Rectangle ohOh = new Rectangle(455, 680, 100, 25);
+				if(rect.intersects(ohOh)){JOptionPane.showMessageDialog(this,"지금은 포켓몬이 없다. 오박사가 연구소로 오라고 했지?");canMove(); y-=50; moveStatus = 0; keyDown = false;}
+			}
+			
 			Rectangle house = new Rectangle(860, 130, 30, 30);
 			if(rect.intersects(house)){
 				int result = JOptionPane.showConfirmDialog(null, "정말 종료하시겠습니까?", "종료 확인", JOptionPane.YES_NO_OPTION);
