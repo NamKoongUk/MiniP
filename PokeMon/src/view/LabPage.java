@@ -32,7 +32,7 @@ public class LabPage extends JPanel {
 	private LabPage lp;
 	private JPanel oldPage;
 	private Map m;
-	private Image labBackground = new ImageIcon().getImage();
+	private JButton back = new JButton(new ImageIcon("images/maketViewImages/marketViewBack.png"));
 	private PokemonDao pd = new PokemonDao();
 	   
 	private User user;
@@ -207,12 +207,12 @@ public class LabPage extends JPanel {
 		});
 		
 		//뒤로가기 버튼(임시)
-		JButton back = new JButton("뒤로");
 		
-		back.setBounds(900, 200, 90, 120);
+		back.setBounds(900, 225, 90, 120);
 		back.setBorderPainted(false);
-		//back.setFocusPainted(false);
+		back.setFocusPainted(false);
 		back.setContentAreaFilled(false);
+		
 		//뒤로가기 버튼
 		back.addMouseListener(new MouseAdapter() {
 

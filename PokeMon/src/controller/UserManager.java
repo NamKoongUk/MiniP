@@ -29,7 +29,7 @@ public class UserManager {
 	
 	public JLabel getUserGold() {
 		JLabel goldLabel = new JLabel();
-		goldLabel.setFont(font);
+		//goldLabel.setFont(new Font("",Font.CENTER_BASELINE, 21));
 		goldLabel.setText(user.getuGold()+"");
 		return goldLabel;
 	}
@@ -56,15 +56,15 @@ public class UserManager {
 		JLabel createTimeLabel = new JLabel();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh시 mm분");
 		String time = sdf.format(user.getuDate());
-		createTimeLabel.setText(time + " 생성");
-		createTimeLabel.setFont(new Font("",Font.CENTER_BASELINE,10));
+		createTimeLabel.setText(time);
+		createTimeLabel.setFont(new Font("",Font.CENTER_BASELINE, 18));
 		return createTimeLabel;
 	}
 	//잡은 포켓몬 수 라벨로 만들어 리턴
 	public JLabel viewUserGetPoke() {
 		JLabel getPokeLabel = new JLabel();
-		getPokeLabel.setFont(font);
-		getPokeLabel.setText("획득한 포켓몬 : " + user.getTp_list().size());
+		//getPokeLabel.setFont(new Font("",Font.CENTER_BASELINE, 18));
+		getPokeLabel.setText(user.getTp_list().size() + "마리");
 		return getPokeLabel;
 	}
 }

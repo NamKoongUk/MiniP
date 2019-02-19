@@ -3,6 +3,8 @@ package view;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -24,12 +26,13 @@ public class UserInfoPage extends JPanel implements KeyListener{
 	private UserMenuPage ump;
 	
 	private JLabel charactorLabel = new JLabel(new ImageIcon("images/userMenuImages/userImage.PNG"));
+	private Image userInfoBackground = new ImageIcon("images/userInfoPage.png").getImage();
 	private JLabel playTimeLabel;
 	private JLabel createTime;
 	private JLabel goldLabel;
 	private JLabel getPokeLabel;
 	private JLabel userNameLabel;
-	private JButton backButton = new JButton(new ImageIcon("images/userMenuImages/backButtonBasic.PNG"));
+	private JButton backButton = new JButton(new ImageIcon("images/maketViewImages/marketViewBack.png"));
 	private User user;
 	
 	public UserInfoPage(MainFrame mf,UserMenuPage ump,User user) {
@@ -47,7 +50,7 @@ public class UserInfoPage extends JPanel implements KeyListener{
 		userNameLabel = um.viewUserName();
 		playTimeLabel = new JLabel();
 		//playTimeLabel.setText(um.viewUserTime());
-		playTimeLabel.setText("플레이 타임 : " + Integer.toString(user.getScd()) + "초");
+		playTimeLabel.setText(Integer.toString(user.getScd()) + "초");
 		createTime = um.viewCreateTime();
 		goldLabel = um.getUserGold();
 		getPokeLabel = um.viewUserGetPoke();
@@ -74,13 +77,11 @@ public class UserInfoPage extends JPanel implements KeyListener{
 		backButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				backButton.setIcon(new ImageIcon("images/userMenuImages/backButtonEntered.PNG"));
-				backButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+				
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				backButton.setIcon(new ImageIcon("images/userMenuImages/backButtonBasic.PNG"));
-				backButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+				
 			}
 			@Override
 			public void mousePressed(java.awt.event.MouseEvent e) {
@@ -92,14 +93,16 @@ public class UserInfoPage extends JPanel implements KeyListener{
 		
 		label.setBounds(450, 20, 200, 40);
 		
-		charactorLabel.setBounds(110, 150, 250, 450);
-		userNameLabel.setBounds(550, 100, 200, 120);
-		createTime.setBounds(550, 240, 3000, 120);
-		createTime.setFont(new Font("돋움체", Font.BOLD, 20));
-		playTimeLabel.setBounds(550,360,300,100);
-		playTimeLabel.setFont(new Font("돋움체", Font.BOLD, 25));
-		goldLabel.setBounds(550, 460, 300, 100);
-		getPokeLabel.setBounds(550, 550, 300, 100);
+		charactorLabel.setBounds(150, 190, 250, 450);
+		userNameLabel.setBounds(680, 115, 200, 120);
+		createTime.setBounds(754, 278, 300, 120);
+		createTime.setFont(new Font("",Font.CENTER_BASELINE, 18));
+		playTimeLabel.setBounds(830, 350, 300,100);
+		playTimeLabel.setFont(new Font("",Font.CENTER_BASELINE, 18));
+		goldLabel.setBounds(825, 410, 300, 100);
+		goldLabel.setFont(new Font("",Font.CENTER_BASELINE, 18));
+		getPokeLabel.setBounds(820, 470, 300, 100);
+		getPokeLabel.setFont(new Font("",Font.CENTER_BASELINE, 18));
 		
 		
 		this.add(label);
@@ -130,4 +133,9 @@ public class UserInfoPage extends JPanel implements KeyListener{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	   public void paintComponent(Graphics g) {
+		   
+		      g.drawImage(userInfoBackground, 0, 0, 1024, 729, this);
+	   }
 }
