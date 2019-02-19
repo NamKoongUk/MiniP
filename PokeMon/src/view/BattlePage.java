@@ -273,10 +273,13 @@ public class BattlePage extends JPanel {
 
 		}
 
-		g.setColor(Color.RED);
-		double num = (user.getUp_list().get(0).getpHp()/user.getUp_list().get(0).getpMaxHp())*100;
+		g.setColor(new Color(200,0,0));
+		g.fillRect(874, 330, 120, 10);
+		
+		g.setColor(new Color(29,200,22));
+		double num = (user.getUp_list().get(0).getpHp()/(double)user.getUp_list().get(0).getpMaxHp())*10;
 		double fnum = 10-num;
-		g.fillRect(874, 330, 120/* -(int)(12*fnum)*/, 10);
+		g.fillRect(874, 330, 120 -(int)(12*fnum), 10);
 
 		Image myHp = Toolkit.getDefaultToolkit().getImage("images/battleViewImg/내HP바.png");
 		g.drawImage(myHp, 710, 280, 300, 100, this);
@@ -296,10 +299,14 @@ public class BattlePage extends JPanel {
 
 		if(this.isVisible()) {
 			//적피
-			g.setColor(Color.RED);
-			/*int ennum = (user.getEp_list().get(0).getpHp()/user.getEp_list().get(0).getpMaxHp())*10;
-			int enfnum = 10-ennum;
-			g.fillRect(125, 97, 120 - (12*enfnum), 10);*/
+			
+			g.setColor(new Color(200,0,0));
+			g.fillRect(125, 97, 120, 10);
+			
+			g.setColor(new Color(29,200,22));
+			double ennum = (user.getEp_list().get(0).getpHp()/(double)user.getEp_list().get(0).getpMaxHp())*10;
+			double enfnum = 10-ennum;
+			g.fillRect(125, 97, 120 - (int)(12*enfnum), 10);
 
 			Image enHp = Toolkit.getDefaultToolkit().getImage("images/battleViewImg/상대HP바.png");
 			g.drawImage(enHp, 0, 30, 300, 100, this);

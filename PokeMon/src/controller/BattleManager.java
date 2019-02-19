@@ -222,6 +222,7 @@ public class BattleManager {
 		user.getEp_list().get(0).setpHp(300);
 		user.getEp_list().get(0).setpSpeed(randomLevel);
 		user.getEp_list().get(0).setExp(randomLevel);
+		user.getEp_list().get(0).setpMaxHp(300);
 
 
 
