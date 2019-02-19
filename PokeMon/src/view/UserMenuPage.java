@@ -27,9 +27,6 @@ public class UserMenuPage extends JPanel {
    private SavePage sp;
    private UserInvenPage uivp;
    private PBookPage pb;
-
-  
-
    private BattleManager bm;
    	
 
@@ -49,11 +46,6 @@ public class UserMenuPage extends JPanel {
       this.ump = this;
       this.mf = mf;
       this.m = m;
-      //this.uip = new UserInfoPage(mf, this,user);
-      //0217-01this.pip = new PInfoPage(mf, this,user);
-      //0217-01this.sp = new SavePage(mf, this);
-      //0217-01this.uivp = new UserInvenPage(mf,this);
-      //0217-01this.pb = new PBookPage(mf,this);
       userMenuImage.setBounds(0, 0, 1024, 768);
       
       
