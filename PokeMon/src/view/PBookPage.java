@@ -151,10 +151,8 @@ public class PBookPage extends JPanel{
             }
          }
       });
-      backButton.setBounds(904, 660, 90, 59);
-      backButton.setBorderPainted(false);
-      backButton.setFocusPainted(false);
-      backButton.setContentAreaFilled(false);
+      backButton.setBounds(905, 657, 90, 60);
+      
       //뒤로 가기 버튼
       backButton.addMouseListener(new MouseAdapter() {
          @Override
