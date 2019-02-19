@@ -23,12 +23,8 @@ public class ItemManager {
 
 	public void decreaseGold(int check) {
 		System.out.println("ItemMamager로 옴");
-		//구매 총액, 현재 유저 소지 금액을 가져와서 돈 깍아주는
-		System.out.println("구매총액 : " + check);
-
+		//구매 총액, 현재 유저 소지 금액을 가져와서 골드를 차감
 		user.setuGold(user.getuGold() - check);
-
-		System.out.println("현재 금액 : " + user.getuGold());
 	}
 
 	public void addInven(int iNo, int iAmount) {
@@ -58,16 +54,6 @@ public class ItemManager {
 		}
 
 
-
-		/*if(user.getUi_list().get(iNo).getiAmount()!=0) {
-    	  iAmount = iAmount + user.getUi_list().get(iNo).getiAmount();
-    	  user.getUi_list().set(iNo, item);
-    	   user.getUi_list().get(iNo).setiAmount(iAmount);
-      }*/
-
-
-
-
 		for(int i = 0; i < user.getUi_list().size(); i++) {
 			if(user.getUi_list().get(i) == null) {
 				System.out.print(i + " : 빈칸 | ");
@@ -76,8 +62,6 @@ public class ItemManager {
 						+ user.getUi_list().get(i).getiAmount() + "개 |");
 			}
 		}
-
-		//useItem(iNo);
 
 	}
 	
@@ -105,7 +89,6 @@ public class ItemManager {
 	
 	//0217-02
 	public int useItem(int iNo,Pokemon poke) {
-		//0217-02 Item item = id.getIList().get(iNo);
 		
 		ArrayList<Item> ui_list = user.getUi_list();
 		Item useItem = null;
@@ -113,7 +96,6 @@ public class ItemManager {
 		for(int i=0; i<ui_list.size();i++) {
 			if(ui_list.get(i).getiNo()==iNo) {
 				useItem = ui_list.get(i);
-				/*ui_list.get(i).setiAmount(ui_list.get(i).getiAmount()-1);*/
 				if(ui_list.get(i).getiAmount()==0) {
 					//수량이 0개 되면 삭제
 					ui_list.remove(i);
@@ -127,21 +109,6 @@ public class ItemManager {
 			
 			System.out.println(poke.getpName() + "에게 " + useItem.getiName() + "사용");
 			subInven(iNo, useItem.getiAmount());
-			//id.getIList().get(iNo).setiAmount(id.getIList().get(iNo).getiAmount() - 1);
-
-			//--------콘솔 확인
-			System.out.println();
-			System.out.println(id.getIList().get(iNo).getiName() + "의 포획 확률 : " + ((Ball) useItem).getcProb());
-			System.out.println("볼 사용 후 인벤 확인");
-			for(int j = 0; j < user.getUi_list().size(); j++) {
-				if(user.getUi_list().get(j) == null) {
-					System.out.print(j + " : 빈칸 | ");
-				}else {
-					System.out.print(" " + j + " : " + user.getUi_list().get(j).getiName() + " / "
-							+ user.getUi_list().get(j).getiAmount() + "개 |");
-				}
-			}
-			//--------콘솔 확인
 
 			return ((Ball) useItem).getcProb();
 
@@ -159,25 +126,6 @@ public class ItemManager {
 				JOptionPane.showMessageDialog(null, "체력이 가득 찼습니다", "에러", JOptionPane.WARNING_MESSAGE);
 			}
 			
-			
-/*			useItem = (Recovery)id.getIList().get(iNo);
-			id.getIList().get(iNo).setiAmount(id.getIList().get(iNo).getiAmount() - 1);
-			
-
-			//--------콘솔 확인
-			System.out.println();
-			System.out.println(id.getIList().get(iNo).getiName() + "의 회복량 : " + ((Recovery) useItem).getAmount());
-			System.out.println("회복약 사용 후 인벤 확인");
-			for(int j = 0; j < user.getUi_list().size(); j++) {
-				if(user.getUi_list().get(j) == null) {
-					System.out.print(j + " : 빈칸 | ");
-				}else {
-					System.out.print(" " + j + " : " + user.getUi_list().get(j).getiName() + " / "
-							+ user.getUi_list().get(j).getiAmount() + "개 |");
-				}
-			}
-			//--------콘솔 확인
-*/
 			return ((Recovery) useItem).getAmount();
 
 		}else if(useItem instanceof Stone) {
@@ -195,12 +143,12 @@ public class ItemManager {
 					JOptionPane.showMessageDialog(null, "진화의 돌과 포켓몬 타입이 맞지 않습니다.", "에러", JOptionPane.WARNING_MESSAGE);
 				}
 			}
+			
 			return ((Stone) useItem).getStoneType();
 		}
 
 		return 0;
 	}
-	//0217-02 useItem 메소드 오버로딩
 	public int useItem(String iName,Pokemon poke) {
 		int iNo=0;
 		for(int i=0; i<id.getIList().size();i++) {
@@ -213,16 +161,16 @@ public class ItemManager {
 	
 	
 	//아이템 이름을 비교하여 리턴
-			public Item itemReturn(String iName) {
-				Item item = null;
-				ArrayList<Item> iList = user.getUi_list();
-				for(int i=0; i<iList.size(); i++) {
-					if(iList.get(i).getiName().equals(iName)) {
-						item = iList.get(i);
-					}
-				}
-				
-				return item;
+	public Item itemReturn(String iName) {
+		Item item = null;
+		ArrayList<Item> iList = user.getUi_list();
+		for(int i=0; i<iList.size(); i++) {
+			if(iList.get(i).getiName().equals(iName)) {
+				item = iList.get(i);
 			}
+		}
+		
+		return item;
+	}
 
 }

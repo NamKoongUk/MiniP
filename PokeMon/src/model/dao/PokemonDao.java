@@ -21,20 +21,20 @@ public class PokemonDao implements Serializable{
 
    public PokemonDao() {
 	   
-      pList.add(new Pokemon("ÀÌ»óÇØ¾¾",1,0,3,0, 0,0, new Item(), false,0, 0, 0, 0, new ArrayList<Skill>()));
-      pList.add(new Pokemon("ÀÌ»óÇØÇ®",2,0,3,0, 0,0, new Item(), false,0, 0, 0, 0,new ArrayList<Skill>()));
+      pList.add(new Pokemon("ÀÌ»óÇØ¾¾",1,0,3,0, 0,0, new Item(), true,0, 0, 0, 0, new ArrayList<Skill>()));
+      pList.add(new Pokemon("ÀÌ»óÇØÇ®",2,0,3,0, 0,0, new Item(), true,0, 0, 0, 0,new ArrayList<Skill>()));
       pList.add(new Pokemon("ÀÌ»óÇØ²É",3,0,3,0, 0,0, new Item(), false,0, 0, 0, 0,new ArrayList<Skill>()));
-      pList.add(new Pokemon("ÆÄÀÌ¸®",4,0,1,0, 0,0, new Item(), false,0, 0, 0, 0,new ArrayList<Skill>()));
-      pList.add(new Pokemon("¸®ÀÚµå",5,0,1,0, 0,0, new Item(), false,0, 0, 0, 0,new ArrayList<Skill>()));
+      pList.add(new Pokemon("ÆÄÀÌ¸®",4,0,1,0, 0,0, new Item(), true,0, 0, 0, 0,new ArrayList<Skill>()));
+      pList.add(new Pokemon("¸®ÀÚµå",5,0,1,0, 0,0, new Item(), true,0, 0, 0, 0,new ArrayList<Skill>()));
       pList.add(new Pokemon("¸®ÀÚ¸ù",6,0,1,0, 0,0, new Item(), false,0, 0, 0, 0,new ArrayList<Skill>()));
-      pList.add(new Pokemon("²¿ºÎ±â",7,0,2,0, 0,0, new Item(), false,0, 0, 0, 0,new ArrayList<Skill>()));
-      pList.add(new Pokemon("¾î´ÏºÎ±â",8,0,2,0, 0,0, new Item(), false,0, 0, 0, 0,new ArrayList<Skill>()));
+      pList.add(new Pokemon("²¿ºÎ±â",7,0,2,0, 0,0, new Item(), true,0, 0, 0, 0,new ArrayList<Skill>()));
+      pList.add(new Pokemon("¾î´ÏºÎ±â",8,0,2,0, 0,0, new Item(), true,0, 0, 0, 0,new ArrayList<Skill>()));
       pList.add(new Pokemon("°ÅºÏ¿Õ",9,0,2,0, 0,0, new Item(), false,0, 0, 0, 0,new ArrayList<Skill>()));
-      pList.add(new Pokemon("ÇÇÁÔ",17,0,0,0, 0,0, new Item(), false,0, 0, 0, 0,new ArrayList<Skill>()));
+      pList.add(new Pokemon("ÇÇÁÔ",17,0,0,0, 0,0, new Item(), true,0, 0, 0, 0,new ArrayList<Skill>()));
       pList.add(new Pokemon("ÇÇÁÔÅõ",18,0,0,0, 0,0, new Item(), false,0, 0, 0, 0,new ArrayList<Skill>()));
-      pList.add(new Pokemon("²¿·¿",19,0,0,0, 0,0, new Item(), false,0, 0, 0, 0,new ArrayList<Skill>()));
+      pList.add(new Pokemon("²¿·¿",19,0,0,0, 0,0, new Item(), true,0, 0, 0, 0,new ArrayList<Skill>()));
       pList.add(new Pokemon("·¹Æ®¶ó",20,0,0,0, 0,0, new Item(), false,0, 0, 0, 0,new ArrayList<Skill>()));
-      pList.add(new Pokemon("±úºñÂü",21,0,0,0, 0,0, new Item(), false,0, 0, 0, 0,new ArrayList<Skill>()));
+      pList.add(new Pokemon("±úºñÂü",21,0,0,0, 0,0, new Item(), true,0, 0, 0, 0,new ArrayList<Skill>()));
       pList.add(new Pokemon("±úºñµå¸±Á¶",22,0,0,0, 0, 0, new Item(), false,0, 0, 0, 0,new ArrayList<Skill>()));
       pList.add(new Pokemon("ÇÇÄ«Ãò",23,0,0,0, 0,0, new Item(), false,0, 0, 0, 0,new ArrayList<Skill>()));
       
