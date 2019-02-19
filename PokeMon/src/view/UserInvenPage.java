@@ -16,7 +16,6 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -26,7 +25,6 @@ import controller.ItemManager;
 import model.dao.ItemDao;
 import model.vo.Ball;
 import model.vo.Item;
-import model.vo.Pokemon;
 import model.vo.Recovery;
 import model.vo.User;
 
@@ -44,8 +42,9 @@ public class UserInvenPage extends JPanel {
 	ArrayList<Item> imgList;
 	ArrayList<Item> iInfo;
 
-	private JButton backButton = new JButton(new ImageIcon(("images/userMenuImages/backButtonBasic.PNG")));
+	private JButton backButton = new JButton(new ImageIcon(("images/userMenuImages/backButton.PNG")));
 	private JButton useButton = new JButton(new ImageIcon(("images/userMenuImages/useButton.PNG")));
+	private JLabel userInvenPageBackLabel = new JLabel(new ImageIcon("images/userMenuImages/userInvenPageBack.png"));
 	private JLabel itemInfoLabel = new JLabel();
 
 	private ItemDao id = new ItemDao();
@@ -59,6 +58,8 @@ public class UserInvenPage extends JPanel {
 		this.itemList= (ArrayList<Item>) user.getUi_list();
 		this.imgList= (ArrayList<Item>) user.getUi_list();
 		this.iInfo= (ArrayList<Item>) user.getUi_list();
+		
+		userInvenPageBackLabel.setBounds(0, 0, 1024, 768);
 
 		String[] iNameList = new String[itemList.size()];
 		for(int i=0 ; i<iNameList.length ; i++) {
@@ -79,20 +80,20 @@ public class UserInvenPage extends JPanel {
 
 		JList itemName = new JList(iNameList);
 		itemName.setFont(new Font(getName(),Font.BOLD,17));
-		itemName.setBounds(50, 100, 320, 480);
+		itemName.setBounds(140, 130, 320, 480);
 		itemName.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 
-		itemInfoLabel.setBounds(500, 100, 300, 300);
+		itemInfoLabel.setBounds(580, 130, 300, 300);
 		itemInfoLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 
 		JLabel itemImg = new JLabel();
-		itemImg.setBounds(630, 130, 50, 50);
+		itemImg.setBounds(710, 130, 50, 50);
 
 		String[] jta = new String[itemList.size()];
 		JTextField jtaText = new JTextField(290);
 
 		JLabel jl = new JLabel();
-		jl.setBounds(505, 200, 290, 150);
+		jl.setBounds(585, 200, 290, 150);
 
 		Item searchItem = null;
 
@@ -123,7 +124,7 @@ public class UserInvenPage extends JPanel {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				jtaText.setText(jta[itemName.getSelectedIndex()]+"");
-				jtaText.setBounds(505, 200, 290, 150);
+				jtaText.setBounds(585, 200, 290, 150);
 				jtaText.setEditable(false);
 				jtaText.setHorizontalAlignment(JTextField.CENTER);
 			}
@@ -149,16 +150,13 @@ public class UserInvenPage extends JPanel {
 
 		JList itemAmountList = new JList(iAmount);
 		itemAmountList.setFont(new Font(getName(),Font.BOLD,17));
-		itemAmountList.setBounds(380, 100,50,480);
+		itemAmountList.setBounds(470, 130,50,480);
 		itemAmountList.setEnabled(false);
 		itemAmountList.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 
 
 
-		useButton.setBounds(500, 450, 300, 150);
-		useButton.setBorderPainted(false);
-		useButton.setFocusPainted(false);
-		useButton.setContentAreaFilled(false);
+		useButton.setBounds(580, 460, 300, 150);
 		useButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(java.awt.event.MouseEvent e) {
@@ -188,13 +186,14 @@ public class UserInvenPage extends JPanel {
 				//배틀페이지에서 아이템 사용하는경우
 				if(oldPage instanceof BattlePage) {
 					if(checkItem instanceof Ball) {
+						//못잡았을때
 						if(!(bm.catchP(user, oldPage, m, checkItem))) {
 							bm.setCtn(bm.getCtn() + 1);
-							System.out.println("못잡았을때");
 							oldPage.setVisible(true);
+						//잡았을때
 						} else {
+							
 							bm.setCtn(bm.getCtn() + 1);
-							System.out.println("잡았을때");
 							oldPage.setVisible(false);
 							mf.remove(oldPage);
 							m.setVisible(true);
@@ -202,7 +201,6 @@ public class UserInvenPage extends JPanel {
 						}
 					} else if(checkItem instanceof Recovery) {
 						for(int i=0; i<itemList.size(); i++) {
-							System.out.println("아이템사용버튼이 실행됨");
 							//선택한 아이템과 소지중인 아이템으로 번호를 받아 메소드 실행
 							if(itemList.get(i).getiName().equals(userItemName)) {
 								uivp.setVisible(false);
@@ -237,20 +235,15 @@ public class UserInvenPage extends JPanel {
 		this.add(useButton);
 
 		label.setBounds(450, 20, 200, 40);
-		backButton.setBounds(900, 610, 90, 120);
-		backButton.setBorderPainted(false);
-		backButton.setFocusPainted(false);
-		backButton.setContentAreaFilled(false);
+		backButton.setBounds(905, 657, 90, 60);
 		//뒤로가기 버튼
 		backButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				backButton.setIcon(new ImageIcon("images/userMenuImages/backButtonEntered.PNG"));
 				backButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				backButton.setIcon(new ImageIcon("images/userMenuImages/backButtonBasic.PNG"));
 				backButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
 			@Override
@@ -265,7 +258,7 @@ public class UserInvenPage extends JPanel {
 		this.add(itemInfoLabel);
 		this.add(itemName);
 		this.add(itemAmountList);
-
+		this.add(userInvenPageBackLabel);
 		this.add(label);
 	}
 	public JPanel getOldPage() {
