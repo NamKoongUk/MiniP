@@ -70,10 +70,8 @@ public class UserInfoPage extends JPanel implements KeyListener{
 		this.setLayout(null);
 		this.setBackground(Color.WHITE);
 		this.addKeyListener(this);
-		backButton.setBounds(900, 610, 90, 120);
-		backButton.setBorderPainted(false);
-		backButton.setFocusPainted(false);
-		backButton.setContentAreaFilled(false);
+		backButton.setBounds(905, 657, 90, 60);
+		
 		//뒤로가기 버튼
 		backButton.addMouseListener(new MouseAdapter() {
 			@Override
