@@ -23,6 +23,7 @@ public class BattleSkillPage extends JPanel implements KeyListener {
 	private BattlePage bp;
 	private BattleManager bm = new BattleManager();
 	private User user;
+	
 	//private NpcBattlePage nbp;
 	
 	//버튼 이미지
@@ -117,6 +118,8 @@ public class BattleSkillPage extends JPanel implements KeyListener {
 			//임시
 			String text = skill1b.getText();
 			bm.battle(mf,bp,(BattleSkillPage) bsp,user,text);
+			Thread thread = new Thread(bp);
+			thread.start();
 			mf.remove(bsp);
 			bp.setVisible(true);
 			mf.requestFocus();
@@ -140,6 +143,8 @@ public class BattleSkillPage extends JPanel implements KeyListener {
 				//임시
 				String text = skill2b.getText();
 				bm.battle(mf,bp,(BattleSkillPage) bsp,user,text);
+				Thread thread = new Thread(bp);
+				thread.start();
 				mf.remove(bsp);
 				bp.setVisible(true);
 				mf.requestFocus();
@@ -162,6 +167,8 @@ public class BattleSkillPage extends JPanel implements KeyListener {
 				//임시
 				String text = skill3b.getText();
 				bm.battle(mf,bp,(BattleSkillPage) bsp,user,text);
+				Thread thread = new Thread(bp);
+				thread.start();
 				mf.remove(bsp);
 				bp.setVisible(true);
 				mf.requestFocus();
@@ -184,6 +191,8 @@ public class BattleSkillPage extends JPanel implements KeyListener {
 				//임시
 				String text = skill4b.getText();
 				bm.battle(mf,bp,(BattleSkillPage) bsp,user,text);
+				Thread thread = new Thread(bp);
+				thread.start();
 				mf.remove(bsp);
 				bp.setVisible(true);
 				mf.requestFocus();

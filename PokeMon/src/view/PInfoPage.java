@@ -23,6 +23,7 @@ import model.vo.Pokemon;
 import model.vo.User;
 
 public class PInfoPage extends JPanel{
+
    //0217-01
    private MainFrame mf;
    private Map m;
@@ -46,7 +47,7 @@ public class PInfoPage extends JPanel{
       this.mf = mf;
       this.pip = this;
       //this.ump = ump;
-      this.oldPage = oldPage; //JPanel ·Î ¹Ş¾Æ À¯Àú¸Ş´º/¹èÆ²ÆäÀÌÁö  ÆäÀÌÁö ¹Ş±â
+      this.oldPage = oldPage; //JPanel ë¡œ ë°›ì•„ ìœ ì €ë©”ë‰´/ë°°í‹€í˜ì´ì§€  í˜ì´ì§€ ë°›ê¸°
       this.user = user;
 
       pip.setOpaque(false);
@@ -117,7 +118,7 @@ public class PInfoPage extends JPanel{
             }
             @Override
             public void mousePressed(MouseEvent e) {
-               //¼±ÅÃµÈ Æ÷ÄÏ¸ó ÀÌ¸§
+               //ì„ íƒëœ í¬ì¼“ëª¬ ì´ë¦„
                if((oldPage instanceof UserInfoPage)) {
                   bm.changeP(mf,oldPage, user, user.getUp_list().get(0));
                }
@@ -208,16 +209,16 @@ public class PInfoPage extends JPanel{
 
 
 
-   //¾ÆÀÌÅÛ »ç¿ë(À¯ÀúÀÎº¥¿¡¼­)¿¬°á
+   //ì•„ì´í…œ ì‚¬ìš©(ìœ ì €ì¸ë²¤ì—ì„œ)ì—°ê²°
    public PInfoPage(MainFrame mf, JPanel oldPage, User user,String userItemName) {
       this(mf,oldPage,user);
       this.mf = mf;
       this.pip = this;
-      //Æ÷ÄÏ¸ó ¸¶¿ì½º ¼±ÅÃ ÀÌº¥Æ® Á¤¸®°¡ ÇÊ¿äÇÔ
-      //³Ñ¾î¿Â ÆäÀÌÁö°¡ UserInvenPageÀÏ¶§¸¸ Àû¿ë
+      //í¬ì¼“ëª¬ ë§ˆìš°ìŠ¤ ì„ íƒ ì´ë²¤íŠ¸ ì •ë¦¬ê°€ í•„ìš”í•¨
+      //ë„˜ì–´ì˜¨ í˜ì´ì§€ê°€ UserInvenPageì¼ë•Œë§Œ ì ìš©
       
-      JButton okBtn = new JButton("»ç¿ë");
-      JButton noBtn = new JButton("¾È»ç¿ë");
+      JButton okBtn = new JButton("ì‚¬ìš©");
+      JButton noBtn = new JButton("ì•ˆì‚¬ìš©");
       if(oldPage instanceof UserInvenPage) {
          pInfo[0].addMouseListener(new MouseAdapter() {
             @Override
@@ -230,7 +231,7 @@ public class PInfoPage extends JPanel{
             }
             @Override
             public void mousePressed(MouseEvent e) {
-               //¼±ÅÃµÈ Æ÷ÄÏ¸ó ÀÌ¸§
+               //ì„ íƒëœ í¬ì¼“ëª¬ ì´ë¦„
                String pName = pInfo[0].getName();
                itemUsedDialog(userItemName,pName);
             }
@@ -284,7 +285,7 @@ public class PInfoPage extends JPanel{
 
    }
    public void itemUsedDialog(String userItemName,String pName) {
-      int result = JOptionPane.showConfirmDialog(null, "¾ÆÀÌÅÛ »ç¿ëÇÏ½Ã°Ú½À´Ï±î??", "¾ÆÀÌÅÛ »ç¿ë",JOptionPane.YES_NO_OPTION);
+      int result = JOptionPane.showConfirmDialog(null, "ì•„ì´í…œ ì‚¬ìš©í•˜ì‹œê² ìŠµë‹ˆê¹Œ??", "ì•„ì´í…œ ì‚¬ìš©",JOptionPane.YES_NO_OPTION);
       
       Pokemon poke = null;
       ArrayList<Pokemon> up_list = (ArrayList<Pokemon>) user.getUp_list();
@@ -312,17 +313,294 @@ public class PInfoPage extends JPanel{
    }
 
 
-   /*//Npc¹èÆ²ÆäÀÌÁö ¿¬°á
+   /*//Npcë°°í‹€í˜ì´ì§€ ì—°ê²°
+
+	//0217-01
+	private MainFrame mf;
+	private Map m;
+	private JPanel pip;
+	private UserMenuPage ump;
+	private JPanel oldPage;
+	private BattlePage bp;
+	private User user;
+	private BattleManager bm = new BattleManager();
+	private Thread th;
+	//private NpcBattlePage nbp;
+
+	private JLabel[] pInfo = new JLabel[4];
+	private JTextArea[] pInfoText = new JTextArea[4];
+	private JButton backButton = new JButton(new ImageIcon("images/maketViewImages/marketViewBack.png"));
+	private Image pInfoBackground = new ImageIcon("images/pInfoPage.png").getImage();
+
+	
+	public PInfoPage(MainFrame mf, JPanel oldPage, User user) {
+
+		this.mf = mf;
+		this.pip = this;
+		//this.ump = ump;
+		this.oldPage = oldPage; //JPanel ë¡œ ë°›ì•„ ìœ ì €ë©”ë‰´/ë°°í‹€í˜ì´ì§€  í˜ì´ì§€ ë°›ê¸°
+		this.user = user;
+
+		pip.setOpaque(false);
+		pip.setBounds(0, 0, 1024, 768);
+		JLabel j = new JLabel();
+		for(int i=0; i < pInfo.length; i++) {
+			pInfo[i] = new JLabel();
+			pInfo[i] = new JLabel(new ImageIcon("images/userMenuImages/pInfo4.png"));
+		}
+		for(int i=0; i < pInfo.length; i++) {
+			pInfoText[i] = new JTextArea();
+
+			pInfoText[i].setBackground(new Color(0,0,0,0));
+		}
+
+		bm.showP((PInfoPage) pip, user);
+
+
+		mf.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == UserMenuPage.ESC) {
+					mf.remove(pip);
+					pip.setVisible(false);
+				}
+			}
+		});
+
+
+
+
+
+
+		JLabel label = new JLabel();
+		label.setText("  ");
+
+		pip.setBackground(Color.WHITE);
+		pip.setLayout(null);
+		backButton.setBounds(905, 657, 90, 60);
+		
+
+		backButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				
+			}
+			@Override
+			public void mousePressed(java.awt.event.MouseEvent e) {
+				mf.remove(pip);
+				oldPage.setVisible(true);
+				mf.requestFocus();
+
+			}
+		});
+		
+		
+			pInfo[0].addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					pip.setCursor(new Cursor(Cursor.HAND_CURSOR));
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					pip.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+				}
+				@Override
+				public void mousePressed(MouseEvent e) {
+					//ì„ íƒëœ í¬ì¼“ëª¬ ì´ë¦„
+					bm.changeP(mf,oldPage, user, user.getUp_list().get(0));
+					
+				}
+			});
+			pInfo[1].addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					pip.setCursor(new Cursor(Cursor.HAND_CURSOR));
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					pip.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+				}
+				@Override
+				public void mousePressed(MouseEvent e) {
+					bm.changeP(mf,oldPage, user, user.getUp_list().get(1));
+					
+				}
+			});
+			pInfo[2].addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					pip.setCursor(new Cursor(Cursor.HAND_CURSOR));
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					pip.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+				}
+				@Override
+				public void mousePressed(MouseEvent e) {
+					bm.changeP(mf,oldPage, user, user.getUp_list().get(2));
+					
+				}
+			});
+			pInfo[3].addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					pip.setCursor(new Cursor(Cursor.HAND_CURSOR));
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					pip.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+				}
+				@Override
+				public void mousePressed(MouseEvent e) {
+					bm.changeP(mf,oldPage, user, user.getUp_list().get(3));
+					
+				}
+			});
+		
+
+
+
+		label.setBounds(450, 20, 200, 40);
+		pInfo[0].setBounds(120, 120, 300, 200);
+		pInfo[1].setBounds(530, 120, 300, 200);
+		pInfo[2].setBounds(120, 410, 300, 200);
+		pInfo[3].setBounds(530, 410, 300, 200);
+
+		pInfoText[0].setBounds(245,160,280,130);
+		pInfoText[1].setBounds(655,160,280,130);
+		pInfoText[2].setBounds(245,455,280,130);
+		pInfoText[3].setBounds(655,455,280,130);
+
+		pip.add(label);
+
+		pip.add(backButton);
+		pip.add(pInfo[0]);
+		pip.add(pInfo[1]);
+		pip.add(pInfo[2]);
+		pip.add(pInfo[3]);
+		pip.add(pInfoText[0]);
+		pip.add(pInfoText[1]);
+		pip.add(pInfoText[2]);
+		pip.add(pInfoText[3]);
+
+
+
+	}
+
+
+
+
+	//ì•„ì´í…œ ì‚¬ìš©(ìœ ì €ì¸ë²¤ì—ì„œ)ì—°ê²°
+	public PInfoPage(MainFrame mf, JPanel oldPage, User user,String userItemName) {
+		this(mf,oldPage,user);
+		this.mf = mf;
+		this.pip = this;
+		//í¬ì¼“ëª¬ ë§ˆìš°ìŠ¤ ì„ íƒ ì´ë²¤íŠ¸ ì •ë¦¬ê°€ í•„ìš”í•¨
+		//ë„˜ì–´ì˜¨ í˜ì´ì§€ê°€ UserInvenPageì¼ë•Œë§Œ ì ìš©
+		
+		JButton okBtn = new JButton("ì‚¬ìš©");
+		JButton noBtn = new JButton("ì•ˆì‚¬ìš©");
+		if(oldPage instanceof UserInvenPage) {
+			pInfo[0].addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					pip.setCursor(new Cursor(Cursor.HAND_CURSOR));
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					pip.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+				}
+				@Override
+				public void mousePressed(MouseEvent e) {
+					//ì„ íƒëœ í¬ì¼“ëª¬ ì´ë¦„
+					String pName = pInfo[0].getName();
+					itemUsedDialog(userItemName,pName);
+				}
+			});
+			pInfo[1].addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					pip.setCursor(new Cursor(Cursor.HAND_CURSOR));
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					pip.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+				}
+				@Override
+				public void mousePressed(MouseEvent e) {
+					String pName = pInfo[1].getName();
+					itemUsedDialog(userItemName,pName);
+				}
+			});
+			pInfo[2].addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					pip.setCursor(new Cursor(Cursor.HAND_CURSOR));
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					pip.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+				}
+				@Override
+				public void mousePressed(MouseEvent e) {
+					String pName = pInfo[2].getName();
+					itemUsedDialog(userItemName,pName);
+				}
+			});
+			pInfo[3].addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					pip.setCursor(new Cursor(Cursor.HAND_CURSOR));
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					pip.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+				}
+				@Override
+				public void mousePressed(MouseEvent e) {
+					String pName = pInfo[3].getName();
+					itemUsedDialog(userItemName,pName);
+				}
+			});
+		}
+
+	}
+	public void itemUsedDialog(String userItemName,String pName) {
+		int result = JOptionPane.showConfirmDialog(null, "ì•„ì´í…œ ì‚¬ìš©í•˜ì‹œê² ìŠµë‹ˆê¹Œ??", "ì•„ì´í…œ ì‚¬ìš©",JOptionPane.YES_NO_OPTION);
+		
+		Pokemon poke = null;
+		ArrayList<Pokemon> up_list = (ArrayList<Pokemon>) user.getUp_list();
+		
+		for(int i=0; i<up_list.size(); i++) {
+			if(up_list.get(i).getpName().equals(pName)) {
+				 poke = up_list.get(i);
+			}
+		}
+		
+		if(result == 0) {
+			new ItemManager(user).useItem(userItemName,poke);
+			mf.remove(pip);
+			oldPage.setVisible(true);
+			mf.requestFocus();
+		}
+	}
+
+
+	/*//Npcë°°í‹€í˜ì´ì§€ ì—°ê²°
+
       public PInfoPage(MainFrame mf, NpcBattlePage nbp) {
          this.mf = mf;
          this.pip = this;
          this.nbp = nbp;
          pip.setOpaque(false);
          pip.setBounds(0, 0, 1024, 768);
-         pm.setPokemon(new Pokemon(1,"ÀÌ»óÇØ¾¾",50,3));
-         pm.setPokemon(new Pokemon(4,"ÆÄÀÌ¸®",50,3));
-         pm.setPokemon(new Pokemon(6,"¸®ÀÚ¸ù",50,1));
-         pm.setPokemon(new Pokemon(5,"¸®ÀÚµå",50,2));
+         pm.setPokemon(new Pokemon(1,"ì´ìƒí•´ì”¨",50,3));
+         pm.setPokemon(new Pokemon(4,"íŒŒì´ë¦¬",50,3));
+         pm.setPokemon(new Pokemon(6,"ë¦¬ìëª½",50,1));
+         pm.setPokemon(new Pokemon(5,"ë¦¬ìë“œ",50,2));
          for(int i=0; i < pInfo.length; i++) {
             pInfo[i] = new JLabel();
             pInfo[i] = new JLabel(new ImageIcon("images/userMenuImages/pInfo4.png"));
@@ -345,11 +623,11 @@ public class PInfoPage extends JPanel{
             String pLevel = pm.getPokemon().get(i).getPokemonLevel()+"";
 
             pInfo[i].setIcon(new ImageIcon("images/userMenuImages/pBook/00"+pm.getPokemon().get(i).getPokemonNumber()+".png"));
-            pInfoText[i].setText("\tÆ÷ÄÏ¸ó ÀÌ¸§ : "+ pName + "\n"
-                           +"\t·¹    º§ : " + pLevel + "\n"
-                           +"\t°ø °İ ·Â : " + pAtk + "\n"
-                           +"\t½º ÇÇ µå : " + pSpeed + "\n"
-                           +"\tÃ¼    ·Â  : " + pHp + "\n"
+            pInfoText[i].setText("\tí¬ì¼“ëª¬ ì´ë¦„ : "+ pName + "\n"
+                           +"\të ˆ    ë²¨ : " + pLevel + "\n"
+                           +"\tê³µ ê²© ë ¥ : " + pAtk + "\n"
+                           +"\tìŠ¤ í”¼ ë“œ : " + pSpeed + "\n"
+                           +"\tì²´    ë ¥  : " + pHp + "\n"
                            );
          }
          BattleManager.showP(this);

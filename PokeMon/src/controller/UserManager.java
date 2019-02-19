@@ -63,7 +63,7 @@ public class UserManager {
 	//잡은 포켓몬 수 라벨로 만들어 리턴
 	public JLabel viewUserGetPoke() {
 		JLabel getPokeLabel = new JLabel();
-		getPokeLabel.setText(user.getTp_list().size() + "마리");
+		getPokeLabel.setText((user.getTp_list().size()+user.getUp_list().size()) + "마리");
 		return getPokeLabel;
 	}
 }

@@ -1,18 +1,14 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -20,15 +16,12 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import controller.MCManager;
 import model.dao.ItemDao;
-import model.dao.UserDao;
-import model.vo.Item;
 import model.vo.User;
 
 //아이템 구매 하는 상점 클래스
@@ -63,34 +56,34 @@ public class MarketView extends JPanel {
       this.setLayout(null);
       this.setBounds(0, 0, 1024, 768);
       
-      listPanel =new JPanel();
+      listPanel = new JPanel();
       
       String[] iNameList = new String[id.getIList().size()];
-      for(int i=0 ; i<iNameList.length ; i++) {
-         iNameList[i]=id.getIList().get(i).getiName();
+      for(int i = 0 ; i < iNameList.length; i++) {
+         iNameList[i] = id.getIList().get(i).getiName();
       }      
       
       String[] iPriceList = new String[id.getIList().size()];
-      for(int i=0 ; i<iPriceList.length ; i++) {
-         iPriceList[i]=id.getIList().get(i).getiPrice() + "G";
+      for(int i = 0 ; i < iPriceList.length; i++) {
+         iPriceList[i] = id.getIList().get(i).getiPrice() + "G";
          
       }
       
       ImageIcon[] iImgList = new ImageIcon[id.getIList().size()];
       int num = 0;
-      for(int i=0 ; i<iImgList.length ; i++) {
+      for(int i = 0; i < iImgList.length; i++) {
     	  iImgList[i] = new ImageIcon("images/itemImages/i00" + num + ".png");
     	  num++;
        } 
       
       JList itemPrice = new JList(iPriceList);
-      itemPrice.setFont(new Font(getName(),Font.BOLD,15));
+      itemPrice.setFont(new Font(getName(), Font.BOLD,15));
       itemPrice.setBounds(677, 210, 47, 250);
       itemPrice.setEnabled(false);
       itemPrice.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
       
       JList itemName = new JList(iNameList);
-      itemName.setFont(new Font(getName(),Font.BOLD,15));
+      itemName.setFont(new Font(getName(),Font.BOLD, 15));
       itemName.setBounds(424, 210, 255, 250);
       itemName.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
       

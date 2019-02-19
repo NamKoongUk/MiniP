@@ -20,7 +20,7 @@ import model.vo.User;
 import music.Music;
 
 
-public class BattlePage extends JPanel {
+public class BattlePage extends JPanel implements Runnable{
 	//0217-01
 	//0217-01  private JPanel bp;
 	private BattlePage bp;
@@ -63,7 +63,14 @@ public class BattlePage extends JPanel {
 
 	private int mpnum;
 	private int epnum;
-
+	private int value;
+	private int seth;
+	private double enfnum;
+	private double ennum;
+	double mnum;
+	double mynum;
+	int myfnum;
+	private int setmh;
 
 
 
@@ -113,14 +120,14 @@ public class BattlePage extends JPanel {
 		myHP.setBounds(830, 310, 50, 40);
 
 		//this.add(myHP);
-		this.setComponentZOrder(myHP, 0);
+		//this.setComponentZOrder(myHP, 0);
 
 
 		enHP.setFont(new Font("바탕체", Font.BOLD, 30));
 		enHP.setBounds(760, 150, 100, 100);
 
 		//this.add(enHP);
-		this.setComponentZOrder(enHP, 0);
+		//this.setComponentZOrder(enHP, 0);
 
 		fightButton.setBounds(180, 500, 300, 80);
 		this.add(fightButton);
@@ -275,16 +282,17 @@ public class BattlePage extends JPanel {
 
 		g.setColor(new Color(200,0,0));
 		g.fillRect(874, 330, 120, 10);
-		
-		g.setColor(new Color(29,200,22));
-		double num = (user.getUp_list().get(0).getpHp()/(double)user.getUp_list().get(0).getpMaxHp())*10;
-		double fnum = 10-num;
-		g.fillRect(874, 330, 120 -(int)(12*fnum), 10);
 
+		g.setColor(new Color(29,200,22));
+
+		mnum = (user.getUp_list().get(0).getpHp()/(double)user.getUp_list().get(0).getpMaxHp())*10;
+		mynum = 10-mnum;
+		myfnum = (int)(12*mynum);
+		g.fillRect(874, 330, 120 -myfnum, 10);
 		Image myHp = Toolkit.getDefaultToolkit().getImage("images/battleViewImg/내HP바.png");
 		g.drawImage(myHp, 710, 280, 300, 100, this);
 
-		
+
 
 
 		g.setColor(Color.black);
@@ -299,14 +307,15 @@ public class BattlePage extends JPanel {
 
 		if(this.isVisible()) {
 			//적피
-			
+
 			g.setColor(new Color(200,0,0));
 			g.fillRect(125, 97, 120, 10);
-			
+
 			g.setColor(new Color(29,200,22));
-			double ennum = (user.getEp_list().get(0).getpHp()/(double)user.getEp_list().get(0).getpMaxHp())*10;
-			double enfnum = 10-ennum;
-			g.fillRect(125, 97, 120 - (int)(12*enfnum), 10);
+			ennum = (user.getEp_list().get(0).getpHp()/(double)user.getEp_list().get(0).getpMaxHp())*10;//50 / 100 = 5
+			enfnum = 10-ennum;																	//5
+			value = (int)(12*enfnum);																	//60
+			g.fillRect(125, 97, 130 - seth , 10);
 
 			Image enHp = Toolkit.getDefaultToolkit().getImage("images/battleViewImg/상대HP바.png");
 			g.drawImage(enHp, 0, 30, 300, 100, this);
@@ -333,5 +342,20 @@ public class BattlePage extends JPanel {
 	}
 
 
-
+	@Override
+	public void run() {
+		System.out.println("스레드 호출");
+		for(int i=0; i<=value; i++) {
+			
+			try {
+				
+				seth +=1;
+				
+				Thread.sleep(10);
+				repaint();	
+			}catch(Exception e) {
+				e.getStackTrace();
+			}
+		}
+	}
 }
