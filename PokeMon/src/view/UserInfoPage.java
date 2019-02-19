@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -65,7 +64,6 @@ public class UserInfoPage extends JPanel implements KeyListener{
 			}
 		});
 		JLabel label = new JLabel();
-		label.setText("유저 정보 페이지");
 
 		this.setLayout(null);
 		this.setBackground(Color.WHITE);

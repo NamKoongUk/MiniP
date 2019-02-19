@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
-
 import model.dao.ItemDao;
 import model.dao.PokemonDao;
 import model.vo.Pokemon;
@@ -19,12 +17,12 @@ public class MCManager {
     }
    
    public void useMarket(String iName, int iAmount) {
-      int check = 0;//구매 하고 싶은 아이템의 총 가격
+      int check = 0; //구매 하고 싶은 아이템의 총 가격
       
       ItemManager im = new ItemManager(user);
-      resultNo=null;
+      resultNo = null;
       
-      for(int i=0 ; i<id.getIList().size() ; i++) {
+      for(int i = 0 ; i < id.getIList().size(); i++) {
          //아이템 고른 것을 비교하여 아이템리스트의 몇번째 인덱스에 있는 지 확인
          if(id.getIList().get(i).getiName().equals(iName)) {
             //구매 하고 싶은 아이템의 총 금액
@@ -57,7 +55,7 @@ public class MCManager {
    
    public void useRecovery(int ans) {
       //1 = yes / 2 = no
-       //회복 시켜주기      
+      //회복 시켜주기      
          
       System.out.println("--회복시작--");
       
@@ -67,10 +65,7 @@ public class MCManager {
       }else {
          for(int i = 0; i < user.getUp_list().size(); i++) {
             if(user.getUp_list().get(i) != null) {
-               System.out.println(user.getUp_list().get(i).getpHp());
-               //user.getUp_list().get(i).setpMaxHp(400);
                user.getUp_list().get(i).setpHp(user.getUp_list().get(i).getpMaxHp());
-               System.out.println(user.getUp_list().get(i).getpHp());
                System.out.println("회복 끝");
                
             }else {
@@ -82,74 +77,30 @@ public class MCManager {
    public void usepChange(Pokemon myPoke, Pokemon totalPoke) {
 	   //포켓몬 교체 해주는 메소드
 	   Pokemon tempPoke = new Pokemon();
-	   tempPoke=null;
+	   tempPoke = null;
 	   
-	   int noMy=0;
-	   int noTo=0;
-	   for(int i=0 ; i<user.getUp_list().size() ; i++) {
-		   if(user.getUp_list().get(i).getpNo()==myPoke.getpNo()) {
-			   noMy=i;
-			   System.out.println("현재 내 인덱스 : "+noMy);
+	   int noMy = 0;
+	   int noTo = 0;
+	   for(int i = 0 ; i < user.getUp_list().size() ; i++) {
+		   if(user.getUp_list().get(i).getpNo() == myPoke.getpNo()) {
+			   noMy = i;
+			   System.out.println("현재 내 인덱스 : " + noMy);
 		   }
 	   }
-	   for(int i=0; i<user.getTp_list().size() ; i++) {
+	   for(int i=0; i < user.getTp_list().size(); i++) {
 		   if(user.getTp_list().get(i).getpNo()==totalPoke.getpNo()){
-			   noTo=i; 
+			   noTo = i; 
 			   System.out.println("현재 전체 포켓몬 인덱스 : "+noTo);
 		   }
 	   }
-	   System.out.println("바꾸기 전 전체 : "+totalPoke.getpName()); 
-	   System.out.println("바꾸기 전 내꺼 : "+myPoke.getpName());
-	   if(myPoke!=totalPoke) {
-		   tempPoke=myPoke;
+
+
+	   if(myPoke != totalPoke) {
+		   tempPoke = myPoke;
 		   user.getUp_list().set(noMy, totalPoke);
 		   user.getTp_list().set(noTo, tempPoke);
 	   }
 	   
-	   System.out.println("바꾸고 전쳬 : "+totalPoke.getpName());
-	   System.out.println("바꾸고 내꺼 : "+myPoke.getpName());
-	   
-	   /*tempPoke=myPoke;
-	   myPoke=totalPoke;
-	   totalPoke=tempPoke;
-	   
-	   System.out.println("바꾸고 전쳬 : "+totalPoke.getpName());
-	   System.out.println("바꾸고 내꺼 : "+myPoke.getpName());*/
-	   
-	   /*
-	   
-	   System.out.println("포켓몬 교체시작");
-	   for(int i=0 ; i<user.getTp_list().size() ; i++) {
-		   user.getTp_list().get(i).getpName();
-		   System.out.println("잡은 포켓몬  :"+user.getTp_list().get(i).getpName());
-		   
-	   }*/
-	   
-	   
-	   /*System.out.println("-----------------교체전");
-	      System.out.println("내 인벤 포켓몬 목록 : ");
-	      for(int i = 0; i < user.getUp_list().size(); i++) {
-	            System.out.print(user.getUp_list().get(i).getpName() + " / ");
-	         }
-	      System.out.println("내 전체 포켓몬 목록 : ");
-	         for(int i = 0; i < user.getTp_list().size(); i++) {
-	            System.out.print(user.getTp_list().get(i).getpName() + " / ");
-	         }
-	         
-	      tempPoke = null;
-	      System.out.println();
-	      System.out.println("교체시작****************");
-	     
-	      System.out.println("-----------------교체후");
-	      System.out.println("내 인벤 포켓몬 목록 : ");
-	      for(int i = 0; i < user.getUp_list().size(); i++) {
-	         
-	         System.out.print(user.getUp_list().get(i).getpName() + " / ");
-	      }
-	      System.out.println("내 전체 포켓몬 목록 : ");
-	      for(int i = 0; i < user.getTp_list().size(); i++) {
-	          System.out.print(user.getTp_list().get(i).getpName() + " / ");
-	      }*/
    }
 
 }
