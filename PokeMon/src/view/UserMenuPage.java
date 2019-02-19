@@ -27,7 +27,12 @@ public class UserMenuPage extends JPanel {
    private SavePage sp;
    private UserInvenPage uivp;
    private PBookPage pb;
-   private BattleManager bm = new BattleManager();
+
+  
+
+   private BattleManager bm;
+   	
+
    private JLabel userMenuImage = new JLabel(new ImageIcon("images/userMenuImages/userMenuImage.png"));
    private JButton saveButton = new JButton(new ImageIcon("images/userMenuImages/savePageButton.PNG"));
    private JButton pBookButton = new JButton(new ImageIcon("images/userMenuImages/pBookButton.PNG"));
@@ -184,7 +189,7 @@ public class UserMenuPage extends JPanel {
       });
       this.add(backButton);
       this.add(userMenuImage);
-      // `Å° ´­·¶À»¶§ ÀÌÀü ¸Ş´º·Î µ¹¾Æ°¨
+      // `í‚¤ ëˆŒë €ì„ë•Œ ì´ì „ ë©”ë‰´ë¡œ ëŒì•„ê°
       mf.addKeyListener(new KeyAdapter() {
          public void keyPressed(KeyEvent e) {
             if(e.getKeyCode() == 192) {
@@ -195,7 +200,7 @@ public class UserMenuPage extends JPanel {
          }
       });
    }
-   //¹öÆ°µé ±âº» ¼¼ÆÃ
+   //ë²„íŠ¼ë“¤ ê¸°ë³¸ ì„¸íŒ…
    public void settingButton(JButton jb) {
       //jb.setBorderPainted(false);
       jb.setFocusPainted(false);
