@@ -29,7 +29,6 @@ public class UserManager {
 	
 	public JLabel getUserGold() {
 		JLabel goldLabel = new JLabel();
-		//goldLabel.setFont(new Font("",Font.CENTER_BASELINE, 21));
 		goldLabel.setText(user.getuGold()+"");
 		return goldLabel;
 	}
@@ -63,8 +62,8 @@ public class UserManager {
 	//잡은 포켓몬 수 라벨로 만들어 리턴
 	public JLabel viewUserGetPoke() {
 		JLabel getPokeLabel = new JLabel();
-		//getPokeLabel.setFont(new Font("",Font.CENTER_BASELINE, 18));
 		getPokeLabel.setText(user.getTp_list().size() + "마리");
 		return getPokeLabel;
 	}
+	
 }
