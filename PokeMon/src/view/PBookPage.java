@@ -55,11 +55,11 @@ public class PBookPage extends JPanel{
       pokemonMax = pd.getpList().size();
       
       if(lastPage%6==0) {
-    	  lastPage=pokemonMax/6;
-    	  System.out.println("6À¸·Î ³ª´²Áü"+lastPage);
+         lastPage=pokemonMax/6;
+         System.out.println("6À¸·Î ³ª´²Áü"+lastPage);
       }else if(lastPage%6!=0) {
-    	  lastPage=pokemonMax/6+1;
-    	  System.out.println("6À¸·Î ¾È³ª´²Áü"+lastPage);
+         lastPage=pokemonMax/6+1;
+         System.out.println("6À¸·Î ¾È³ª´²Áü"+lastPage);
       }
       
       pBookImage();
@@ -194,35 +194,66 @@ public class PBookPage extends JPanel{
    //ÀÌ¹ÌÁö listÀúÀå ¸Þ¼Òµå
 
    public void pBookImage() {
-    	  if(pokemonMax%6==0) {
-    		  
-    		  for(int i=0; i<lastPage*6; i++) {
-        		  if(i<9) {
-        			  image = new ImageIcon(("images/userMenuImages/pBook/00"+(i+1)+".png"));
-        		  } else {
-        			  image = new ImageIcon(("images/userMenuImages/pBook/0"+(i+1)+".png"));
-        		  }
-        		  imageList.add(image);
-    		  }
-    		  
-    	  }else {
-    		  for(int i=0 ; i<lastPage*6 ; i++) {
-    			  if(i<=pokemonMax) {
-    				  if(i<9) {
-    					  image = new ImageIcon(("images/userMenuImages/pBook/00"+(i+1)+".png"));
-    				  } else {
-    					  image = new ImageIcon(("images/userMenuImages/pBook/0"+(i+1)+".png"));
-    					  
-    				  }
-    				  imageList.add(image);
-    				  
-    			  }else {
-    				  image = new ImageIcon(("images/userMenuImages/pBook/nonImage.png"));
-    				  imageList.add(image);    			  }
-    			  
-    		  }
-    		  
-    	  }
+	   lastPage=3;
+	   image = new ImageIcon(("images/userMenuImages/pBook/"+1+".PNG"));
+       imageList.add(image);
+       image = new ImageIcon(("images/userMenuImages/pBook/"+2+".PNG"));
+       imageList.add(image);
+       image = new ImageIcon(("images/userMenuImages/pBook/"+3+".PNG"));
+       imageList.add(image);
+       image = new ImageIcon(("images/userMenuImages/pBook/"+4+".PNG"));
+       imageList.add(image);
+       image = new ImageIcon(("images/userMenuImages/pBook/"+5+".PNG"));
+       imageList.add(image);
+       image = new ImageIcon(("images/userMenuImages/pBook/"+6+".PNG"));
+       imageList.add(image);
+       image = new ImageIcon(("images/userMenuImages/pBook/"+7+".PNG"));
+       imageList.add(image);
+       image = new ImageIcon(("images/userMenuImages/pBook/"+8+".PNG"));
+       imageList.add(image);
+       image = new ImageIcon(("images/userMenuImages/pBook/"+9+".PNG"));
+       imageList.add(image);
+       image = new ImageIcon(("images/userMenuImages/pBook/"+17+".PNG"));
+       imageList.add(image);
+       image = new ImageIcon(("images/userMenuImages/pBook/"+18+".PNG"));
+       imageList.add(image);
+       image = new ImageIcon(("images/userMenuImages/pBook/"+19+".PNG"));
+       imageList.add(image);
+       image = new ImageIcon(("images/userMenuImages/pBook/"+20+".PNG"));
+       imageList.add(image);
+       image = new ImageIcon(("images/userMenuImages/pBook/"+21+".PNG"));
+       imageList.add(image);
+       image = new ImageIcon(("images/userMenuImages/pBook/"+22+".PNG"));
+       imageList.add(image);
+       image = new ImageIcon(("images/userMenuImages/pBook/"+23+".PNG"));
+       imageList.add(image);
+       image = new ImageIcon(("images/userMenuImages/pBook/nonImage.png"));
+       imageList.add(image);           
+       image = new ImageIcon(("images/userMenuImages/pBook/nonImage.png"));
+       imageList.add(image);           
+       
+	   
+         /*if(pokemonMax%6==0) {
+            
+            for(int i=0; i<lastPage*6; i++) {
+               image = new ImageIcon(("images/userMenuImages/pBook/"+(i+1)+".PNG"));
+                imageList.add(image);
+            }
+            
+         }else {
+            for(int i=0 ; i<lastPage*6 ; i++) {
+               if(i<=pokemonMax) {
+                  image = new ImageIcon(("images/userMenuImages/pBook/"+(i+1)+".PNG"));
+                    imageList.add(image);
+                  
+               }else {
+                  image = new ImageIcon(("images/userMenuImages/pBook/nonImage.png"));
+                  imageList.add(image);               }
+               
+            }
+            
+         }*/
+         
    }
    public void clickPBookRightButton(int Page) {
       int max = Page*6;
@@ -268,8 +299,8 @@ public class PBookPage extends JPanel{
       
    }
    public void paintComponent(Graphics g) {
-	   
-	      g.drawImage(pBookBackgroundLabel, 0, 0, 1024, 729, pb);
+      
+         g.drawImage(pBookBackgroundLabel, 0, 0, 1024, 729, pb);
    }
 
    public void settingButton(JButton jb) {
